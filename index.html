@@ -28,7 +28,7 @@
 
         /* Header */
         header {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--card-border);
             position: sticky; top: 0; z-index: 100;
@@ -42,19 +42,25 @@
         .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; font-size: 1.25rem; font-weight: 800; }
         .brand i { color: var(--primary-blue); font-size: 1.5rem; }
 
-        .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+        .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; }
         .nav-links a:hover, .nav-links a.active { color: var(--primary-blue); }
 
+        .btn-gold-nav {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #0f172a; padding: 0.5rem 1.2rem; border-radius: 20px;
+            font-weight: 800; text-decoration: none; font-size: 0.85rem;
+            display: inline-flex; align-items: center; gap: 6px;
+        }
+        .btn-gold-nav:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4); }
+
         /* Hero */
-        .hero { text-align: center; padding: 4rem 1.5rem 2rem; max-width: 800px; margin: 0 auto; }
+        .hero { text-align: center; padding: 4rem 1.5rem 2.5rem; max-width: 800px; margin: 0 auto; }
         .hero h1 { font-size: 2.4rem; font-weight: 900; margin-bottom: 1rem; line-height: 1.3; }
-        .hero p { color: var(--text-muted); font-size: 1rem; margin-bottom: 2rem; }
+        .hero p { color: var(--text-muted); font-size: 1rem; margin-bottom: 2rem; line-height: 1.6; }
 
         /* Search Box */
-        .search-container {
-            max-width: 600px; margin: 0 auto 3rem; position: relative;
-        }
+        .search-container { max-width: 600px; margin: 0 auto 3rem; position: relative; }
         .search-container input {
             width: 100%; padding: 1rem 1.5rem 1rem 3rem;
             background: var(--card-bg); border: 1px solid var(--card-border);
@@ -67,20 +73,17 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem 4rem; }
         .section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 8px; }
 
-        .categories-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;
-        }
+        .categories-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
 
         .category-card {
             background: var(--card-bg); border: 1px solid var(--card-border);
             border-radius: var(--radius); padding: 1.5rem;
             text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 12px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px); position: relative; overflow: hidden;
         }
 
         .category-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-blue);
+            transform: translateY(-5px); border-color: var(--primary-blue);
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
@@ -90,21 +93,27 @@
             display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
         }
 
+        /* کارت ویژه طلا */
         .category-card.gold-featured {
-            border-color: rgba(245, 158, 11, 0.4);
-            background: linear-gradient(145deg, rgba(245, 158, 11, 0.1), rgba(30, 41, 59, 0.8));
+            border-color: rgba(245, 158, 11, 0.5);
+            background: linear-gradient(145deg, rgba(245, 158, 11, 0.12), rgba(30, 41, 59, 0.85));
         }
 
         .category-card.gold-featured .icon-box {
-            background: rgba(245, 158, 11, 0.15); color: #f59e0b;
+            background: rgba(245, 158, 11, 0.2); color: #f59e0b;
+        }
+
+        .category-card.gold-featured:hover {
+            border-color: #f59e0b;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.25);
         }
 
         .category-card h3 { font-size: 1.15rem; font-weight: 800; }
         .category-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
-        
+
         .badge-count {
-            font-size: 0.75rem; background: rgba(255, 255, 255, 0.05);
-            padding: 2px 8px; border-radius: 12px; color: var(--text-muted); width: fit-content;
+            font-size: 0.75rem; background: rgba(255, 255, 255, 0.06);
+            padding: 4px 10px; border-radius: 12px; color: var(--text-muted); width: fit-content;
         }
 
         footer { text-align: center; padding: 2rem; border-top: 1px solid var(--card-border); color: var(--text-muted); font-size: 0.85rem; }
@@ -121,8 +130,10 @@
                 <li><a href="index.html" class="active">صفحه اصلی</a></li>
                 <li><a href="#categories">دسته‌بندی‌ها</a></li>
                 <li><a href="gold-ecosystem.html">اکوسیستم طلا</a></li>
-                <li><a href="#">درباره اطلس</a></li>
             </ul>
+            <a href="gold-ecosystem.html" class="btn-gold-nav">
+                <i class="fa-solid fa-coins"></i> اطلس طلا (۸۱ فعال)
+            </a>
         </div>
     </header>
 
@@ -141,17 +152,17 @@
 
         <div class="categories-grid">
             
-            <!-- کارت ویژه: اکوسیستم طلا -->
+            <!-- کارت ویژه: لینک درست به gold-ecosystem.html -->
             <a href="gold-ecosystem.html" class="category-card gold-featured">
                 <div class="icon-box"><i class="fa-solid fa-coins"></i></div>
                 <div>
                     <h3>اکوسیستم طلا و فین‌تک</h3>
                     <p>پلتفرم‌های خرید آنلاین، صندوق‌های بورس، شمش‌سازی، معادن و نهادها</p>
                 </div>
-                <span class="badge-count">۸۱ کسب‌وکار ثبت‌شده</span>
+                <span class="badge-count" style="color: #fef08a;">۸۱ کسب‌وکار ثبت‌شده</span>
             </a>
 
-            <!-- سایر دسته‌های اطلس شما -->
+            <!-- سایر دسته‌ها -->
             <a href="#" class="category-card">
                 <div class="icon-box"><i class="fa-solid fa-wallet"></i></div>
                 <div>
