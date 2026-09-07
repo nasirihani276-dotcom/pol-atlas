@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اطلس اکوسیستم طلا و فین‌تک طلا</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    <style>
+        :root {
+            --bg-main: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-border: rgba(226, 232, 240, 0.8);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --gold-primary: #d97706;
+            --gold-light: #fffbeb;
+            --gold-border: #fef3c7;
+            --radius-lg: 20px;
+            --radius-md: 12px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; transition: all 0.25s ease; }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(217, 119, 6, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky; top: 0; z-index: 100;
+        }
+
+        .navbar {
+            max-width: 1280px; margin: 0 auto; padding: 1rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .brand {
+            display: flex; align-items: center; gap: 12px;
+            text-decoration: none; color: var(--text-main); font-size: 1.25rem; font-weight: 900;
+        }
+
+        .brand-icon {
+            width: 40px; height: 40px; border-radius: 12px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: #fff; box-shadow: 0 6px 16px rgba(217, 119, 6, 0.3);
+        }
+
+        .btn-back {
+            color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 700;
+            display: flex; align-items: center; gap: 8px; padding: 0.5rem 1rem; border-radius: 20px;
+            background: #f1f5f9;
+        }
+        .btn-back:hover { background: #e2e8f0; color: var(--text-main); }
+
+        /* Banner Header */
+        .page-header {
+            max-width: 1280px; margin: 2.5rem auto 1.5rem; padding: 0 2rem;
+            display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem;
+        }
+
+        .header-title h1 {
+            font-size: 2.2rem; font-weight: 900; color: #0f172a;
+            display: flex; align-items: center; gap: 12px;
+        }
+
+        .header-title p { color: var(--text-muted); font-size: 0.98rem; margin-top: 8px; }
+
+        /* Filter Tabs */
+        .filters-wrapper {
+            max-width: 1280px; margin: 0 auto; padding: 0 2rem 2rem;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+        }
+
+        .category-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+        
+        .tab-btn {
+            background: #ffffff; border: 1px solid #e2e8f0;
+            padding: 8px 18px; border-radius: 30px; font-size: 0.88rem; font-weight: 700;
+            color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 6px;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--gold-primary); color: #fff; border-color: var(--gold-primary);
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
+        }
+
+        .search-box-sm {
+            position: relative; min-width: 280px;
+        }
+
+        .search-box-sm input {
+            width: 100%; padding: 10px 16px 10px 38px;
+            border: 1px solid #e2e8f0; border-radius: 20px; background: #fff;
+            font-size: 0.9rem; outline: none;
+        }
+        .search-box-sm input:focus { border-color: var(--gold-primary); }
+        .search-box-sm i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+
+        /* Business Grid */
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem 5rem; }
+
+        .biz-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;
+        }
+
+        .biz-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg); padding: 1.5rem; text-decoration: none; color: inherit;
+            display: flex; flex-direction: column; justify-content: space-between;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03); backdrop-filter: blur(8px);
+        }
+
+        .biz-card:hover {
+            transform: translateY(-5px); border-color: #fcd34d;
+            box-shadow: 0 12px 25px rgba(217, 119, 6, 0.12);
+        }
+
+        .biz-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+        
+        .biz-logo {
+            width: 48px; height: 48px; border-radius: var(--radius-md);
+            background: var(--gold-light); border: 1px solid var(--gold-border);
+            color: var(--gold-primary); font-size: 1.3rem;
+            display: flex; align-items: center; justify-content: center; font-weight: 900;
+        }
+
+        .biz-info h3 { font-size: 1.05rem; font-weight: 800; color: #0f172a; }
+        .biz-info .tag {
+            display: inline-block; background: #f1f5f9; color: var(--text-muted);
+            font-size: 0.75rem; font-weight: 600; padding: 2px 8px; border-radius: 10px; margin-top: 4px;
+        }
+
+        .biz-desc { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 1.2rem; }
+
+        .biz-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 1px solid #f1f5f9; padding-top: 0.8rem; font-size: 0.8rem; color: var(--gold-primary); font-weight: 700;
+        }
+
+        footer {
+            border-top: 1px solid #e2e8f0; padding: 2rem;
+            text-align: center; color: var(--text-muted); font-size: 0.85rem; background: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <a href="index.html" class="brand">
+                <div class="brand-icon"><i class="fa-solid fa-coins"></i></div>
+                اطلس طلا و فین‌تک طلا
+            </a>
+            <a href="index.html" class="btn-back"><i class="fa-solid fa-arrow-right"></i> بازگشت به صفحه اصلی</a>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="header-title">
+            <h1><i class="fa-solid fa-coins" style="color: var(--gold-primary);"></i> بازیگران اکوسیستم طلا</h1>
+            <p>شناسایی پلتفرم‌های معاملات، صندوق‌های سرمایه‌گذاری، سازندگان و نهادهای مالی حوزه طلا</p>
+        </div>
+    </div>
+
+    <!-- فیلترها و جستجو -->
+    <div class="filters-wrapper">
+        <div class="category-tabs">
+            <button class="tab-btn active" onclick="filterCategory('all')">همه (۸)</button>
+            <button class="tab-btn" onclick="filterCategory('fintech')">فین‌تک و خرید آنلاین</button>
+            <button class="tab-btn" onclick="filterCategory('funds')">صندوق‌های طلا (بورس)</button>
+            <button class="tab-btn" onclick="filterCategory('industry')">صنایع و شمش‌سازی</button>
+        </div>
+
+        <div class="search-box-sm">
+            <input type="text" id="searchInput" placeholder="جستجوی نام یا خدمت...">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+    </div>
+
+    <!-- لیست کارت‌ها -->
+    <main class="container">
+        <div class="biz-grid" id="bizGrid">
+
+            <!-- نمونه ۱ -->
+            <div class="biz-card" data-category="fintech">
+                <div>
+                    <div class="biz-header">
+                        <div class="biz-logo"><i class="fa-solid fa-vault"></i></div>
+                        <div class="biz-info">
+                            <h3>طلاین</h3>
+                            <span class="tag">فین‌تک و خرید آنلاین</span>
+                        </div>
+                    </div>
+                    <p class="biz-desc">سامانه خرید و فروش آنلاین طلای آب‌شده بدون اجرت با امکان تحویل فیزیکی و تحویل کارمزد کم.</p>
+                </div>
+                <div class="biz-footer">
+                    <span>مشاهده جزئیات</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
+            </div>
+
+            <!-- نمونه ۲ -->
+            <div class="biz-card" data-category="fintech">
+                <div>
+                    <div class="biz-header">
+                        <div class="biz-logo"><i class="fa-solid fa-mobile-screen"></i></div>
+                        <div class="biz-info">
+                            <h3>ملی‌گلد</h3>
+                            <span class="tag">فین‌تک و خرید آنلاین</span>
+                        </div>
+                    </div>
+                    <p class="biz-desc">پلتفرم معاملات پس‌انداز و سرمایه‌گذاری خرد طلا با مجوزهای رسمی و گواهی اصالت.</p>
+                </div>
+                <div class="biz-footer">
+                    <span>مشاهده جزئیات</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
+            </div>
+
+            <!-- نمونه ۳ -->
+            <div class="biz-card" data-category="funds">
+                <div>
+                    <div class="biz-header">
+                        <div class="biz-logo"><i class="fa-solid fa-chart-pie"></i></div>
+                        <div class="biz-info">
+                            <h3>صندوق لوتوس (طلا)</h3>
+                            <span class="tag">صندوق‌های طلا (بورس)</span>
+                        </div>
+                    </div>
+                    <p class="biz-desc">اولین و بزرگ‌ترین صندوق پشتوانه طلای بورس کالای ایران با نماد طلا.</p>
+                </div>
+                <div class="biz-footer">
+                    <span>مشاهده جزئیات</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
+            </div>
+
+            <!-- نمونه ۴ -->
+            <div class="biz-card" data-category="funds">
+                <div>
+                    <div class="biz-header">
+                        <div class="biz-logo"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                        <div class="biz-info">
+                            <h3>صندوق عیار</h3>
+                            <span class="tag">صندوق‌های طلا (بورس)</span>
+                        </div>
+                    </div>
+                    <p class="biz-desc">صندوق سرمایه‌گذاری قابل معامله در بورس (ETF) مبتنی بر گواهی سپرده طلا و سکه.</p>
+                </div>
+                <div class="biz-footer">
+                    <span>مشاهده جزئیات</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
+            </div>
+
+            <!-- نمونه ۵ -->
+            <div class="biz-card" data-category="fintech">
+                <div>
+                    <div class="biz-header">
+                        <div class="biz-logo"><i class="fa-solid fa-gem"></i></div>
+                        <div class="biz-info">
+                            <h3>داریک</h3>
+                            <span class="tag">فین‌تک و خرید آنلاین</span>
+                        </div>
+                    </div>
+                    <p class="biz-desc">پلتفرم مدیریت دارایی و خرید هوشمند طلای استاندارد با قابلیت کیف پول اعتباری.</p>
+                </div>
+                <div class="biz-footer">
+                    <span>مشاهده جزئیات</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
+            </div>
+
+            <!-- نمونه ۶ -->
+            <div class="biz-card" data-category="industry">
+                <div>
+                    <div class="biz-header">
+                        <div class="biz-logo"><i class="fa-solid fa-industry"></i></div>
+                        <div class="biz-info">
+                            <h3>زرافشان</h3>
+                            <span class="tag">صنایع و شمش‌سازی</span>
+                        </div>
+                    </div>
+                    <p class="biz-desc">تولیدکننده شمش‌های استاندارد طلای ۲۴ عیار با تاییدیه بانک مرکزی و آزمایشگاه‌های معتبر.</p>
+                </div>
+                <div class="biz-footer">
+                    <span>مشاهده جزئیات</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
+            </div>
+
+            <!-- نمونه ۷ -->
+            <div class="biz-card" data-category="fintech">
+                <div>
+                    <div class="biz-header">
+                        <div class="biz-logo"><i class="fa-solid fa-scale-balanced"></i></div>
+                        <div class="biz-info">
+                            <h3>گلدیکا</h3>
+                            <span class="tag">فین‌تک و خرید آنلاین</span>
+                        </div>
+                    </div>
+                    <p class="biz-desc">بازار آنلاین معاملات بدون واسطه طلای آب‌شده و سکه رسمی با قابلیت تحویل حضوری.</p>
+                </div>
+                <div class="biz-footer">
+                    <span>مشاهده جزئیات</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
+            </div>
+
+            <!-- نمونه ۸ -->
+            <div class="biz-card" data-category="industry">
+                <div>
+                    <div class="biz-header">
+                        <div class="biz-logo"><i class="fa-solid fa-building-columns"></i></div>
+                        <div class="biz-info">
+                            <h3>خزانه جواهرات و سکه</h3>
+                            <span class="tag">صنایع و شمش‌سازی</span>
+                        </div>
+                    </div>
+                    <p class="biz-desc">ارائه‌دهنده خدمات انبارداری، توثیق و نگهداری امن سکه و طلا برای نهادهای مالی.</p>
+                </div>
+                <div class="biz-footer">
+                    <span>مشاهده جزئیات</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>© ۱۴۰۵ اطلس اکوسیستم طلا - تمامی حقوق محفوظ است.</p>
+    </footer>
+
+    <script>
+        // فیلتر بر اساس دسته‌بندی
+        function filterCategory(cat) {
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.biz-card');
+            cards.forEach(card => {
+                if (cat === 'all' || card.getAttribute('data-category') === cat) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // جستجو در بین کسب‌وکارها
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.biz-card');
+            
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if(text.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
