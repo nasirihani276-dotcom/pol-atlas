@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دایرکتوری و بانک جامع اکوسیستم طلا و فین‌تک</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    <style>
+        :root {
+            --bg-main: #f8fafc;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --gold-primary: #d97706;
+            --gold-light: #fffbeb;
+            --gold-border: #fef3c7;
+            --radius-lg: 16px;
+            --radius-md: 10px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; transition: all 0.2s ease; }
+
+        body { background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; }
+
+        header { background: #ffffff; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 90; }
+
+        .navbar { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+
+        .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); font-size: 1.2rem; font-weight: 800; }
+
+        .brand-icon { width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: #fff; }
+
+        .page-header { max-width: 1400px; margin: 2rem auto 1.5rem; padding: 0 2rem; }
+        .header-title h1 { font-size: 1.8rem; font-weight: 900; color: #0f172a; display: flex; align-items: center; gap: 10px; }
+        .header-title p { color: var(--text-muted); font-size: 0.95rem; margin-top: 6px; }
+
+        .filters-wrapper { max-width: 1400px; margin: 0 auto; padding: 0 2rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+
+        .category-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+        
+        .tab-btn { background: #ffffff; border: 1px solid #cbd5e1; padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; color: var(--text-muted); cursor: pointer; }
+        .tab-btn:hover, .tab-btn.active { background: var(--gold-primary); color: #fff; border-color: var(--gold-primary); }
+
+        .search-box-sm { position: relative; min-width: 260px; }
+        .search-box-sm input { width: 100%; padding: 8px 14px 8px 36px; border: 1px solid #cbd5e1; border-radius: 20px; background: #fff; font-size: 0.85rem; outline: none; }
+        .search-box-sm input:focus { border-color: var(--gold-primary); }
+        .search-box-sm i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem 4rem; }
+
+        .biz-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+
+        .biz-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg); padding: 1.2rem; display: flex; flex-direction: column; justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04); cursor: pointer;
+        }
+
+        .biz-card:hover { transform: translateY(-3px); border-color: var(--gold-primary); box-shadow: 0 8px 20px rgba(217, 119, 6, 0.12); }
+
+        .biz-header { display: flex; align-items: center; gap: 12px; margin-bottom: 0.8rem; }
+        
+        .biz-logo {
+            width: 46px; height: 46px; border-radius: var(--radius-md);
+            background: var(--gold-light); border: 1px solid var(--gold-border);
+            color: var(--gold-primary); font-size: 1.2rem;
+            display: flex; align-items: center; justify-content: center; font-weight: 800;
+            flex-shrink: 0; overflow: hidden;
+        }
+        .biz-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+        .biz-info h3 { font-size: 1rem; font-weight: 800; color: #0f172a; }
+        .biz-info .tag { display: inline-block; background: #f1f5f9; color: var(--text-muted); font-size: 0.72rem; font-weight: 600; padding: 2px 8px; border-radius: 6px; margin-top: 2px; }
+
+        .biz-desc-short { color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; margin-bottom: 1rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+        .biz-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 0.6rem; font-size: 0.78rem; color: var(--gold-primary); font-weight: 700; }
+
+        /* Modal / Profile View */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px);
+            display: none; justify-content: center; align-items: center; z-index: 1000; padding: 1rem;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .profile-card {
+            background: #fff; width: 100%; max-width: 600px; border-radius: 20px;
+            padding: 2rem; position: relative; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            max-height: 90vh; overflow-y: auto;
+        }
+
+        .close-btn { position: absolute; top: 1.2rem; left: 1.2rem; background: #f1f5f9; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1rem; color: var(--text-muted); }
+        .close-btn:hover { background: #e2e8f0; color: var(--text-main); }
+
+        .profile-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .profile-logo { width: 64px; height: 64px; border-radius: 14px; background: var(--gold-light); border: 1px solid var(--gold-border); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--gold-primary); font-weight: 800; }
+        .profile-title h2 { font-size: 1.4rem; color: var(--text-main); }
+        .profile-title span { color: var(--gold-primary); font-weight: 700; font-size: 0.85rem; }
+
+        .profile-body { font-size: 0.92rem; line-height: 1.7; color: #334155; margin-bottom: 2rem; }
+        .profile-body h4 { margin-top: 1rem; margin-bottom: 0.5rem; color: var(--text-main); }
+
+        .profile-actions { display: flex; gap: 1rem; }
+        .btn-visit { flex: 1; text-align: center; background: var(--gold-primary); color: #fff; padding: 10px 18px; border-radius: 10px; text-decoration: none; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-visit:hover { background: #b45309; }
+
+        footer { border-top: 1px solid #e2e8f0; padding: 1.5rem; text-align: center; color: var(--text-muted); font-size: 0.8rem; background: #fff; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <a href="#" class="brand">
+                <div class="brand-icon"><i class="fa-solid fa-layer-group"></i></div>
+                دایرکتوری جامع اکوسیستم طلا
+            </a>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="header-title">
+            <h1><i class="fa-solid fa-coins" style="color: var(--gold-primary);"></i> بانک اطلاعاتی و پروفایل فعالان طلا</h1>
+            <p>اطلاعات کامل، حوزه فعالیت و وب‌سایت مستقیم بیش از ۸۰ مجموعه فعال بازار طلا</p>
+        </div>
+    </div>
+
+    <div class="filters-wrapper">
+        <div class="category-tabs">
+            <button class="tab-btn active" onclick="filterCategory('all', this)">همه (<span id="totalCount">0</span>)</button>
+            <button class="tab-btn" onclick="filterCategory('fintech', this)">فین‌تک طلا</button>
+            <button class="tab-btn" onclick="filterCategory('stores', this)">فروشگاه‌های آنلاین</button>
+            <button class="tab-btn" onclick="filterCategory('funds', this)">بورس و صندوق‌ها</button>
+            <button class="tab-btn" onclick="filterCategory('production', this)">تولید و پالایش</button>
+            <button class="tab-btn" onclick="filterCategory('logistics', this)">لجستیک و بیمه</button>
+            <button class="tab-btn" onclick="filterCategory('regulators', this)">نهادهای قانونی</button>
+        </div>
+
+        <div class="search-box-sm">
+            <input type="text" id="searchInput" placeholder="جستجوی نام یا دامنه...">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="biz-grid" id="bizGrid"></div>
+    </main>
+
+    <!-- Modal for Profile View -->
+    <div class="modal-overlay" id="profileModal">
+        <div class="profile-card">
+            <button class="close-btn" onclick="closeProfile()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="profile-header">
+                <div class="profile-logo" id="modalLogo"></div>
+                <div class="profile-title">
+                    <h2 id="modalName">نام مجموعه</h2>
+                    <span id="modalCategory">دسته‌بندی</span>
+                </div>
+            </div>
+            <div class="profile-body">
+                <h4>معرفی و حوزه فعالیت:</h4>
+                <p id="modalDesc">توضیحات سئوشده اینجا قرار می‌گیرد...</p>
+                <div style="margin-top: 1rem; background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                    <strong>آدرس وب‌سایت رسمی:</strong> <span id="modalDomain" style="direction: ltr; display: inline-block; color: var(--gold-primary);"></span>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <a href="#" id="modalLink" target="_blank" rel="noopener" class="btn-visit">
+                    ورود به وب‌سایت رسمی <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© دایرکتوری تخصصی اکوسیستم طلا و فین‌تک</p>
+    </footer>
+
+    <script>
+        // بانک داده کامل ۸۰ مجموعه با توضیحات سئوشده
+        const items = [
+            // فین‌تک
+            { id: 1, name: "زربان", category: "fintech", catName: "فین‌تک طلا", domain: "servatafza.ir", url: "https://servatafza.ir", desc: "پلتفرم مدیریت دارایی و سرمایه‌گذاری هوشمند در طلا با ارائه‌ راهکارهای فین‌تکی جهت پس‌انداز خرد و حفظ ارزش دارایی در برابر تورم." },
+            { id: 2, name: "گلدیکا", category: "fintech", catName: "فین‌تک طلا", domain: "goldika.ir", url: "https://goldika.ir", desc: "سامانه آنلاین خرید و فروش طلای آب‌شده بدون اجرت با قابلیت تحویل فیزیکی، تحویل سفارشی و معامله ۲۴ ساعته." },
+            { id: 3, name: "میلی گلد", category: "fintech", catName: "فین‌تک طلا", domain: "milli.gold", url: "https://milli.gold", desc: "پلتفرم شفاف خرید و فروش میلی‌گرمی طلای ۱۸ عیار، مناسب برای پس‌اندازهای خرد و سرمایه‌گذاری مطمئن با تحویل فیزیکی." },
+            { id: 4, name: "طلاسی", category: "fintech", catName: "فین‌تک طلا", domain: "talasea.ir", url: "https://talasea.ir", desc: "اپلیکیشن آنلاین خرید و فروش طلای خام و شمش طلا با ابزارهای تحلیل قیمت و مدیریت کیف پول دیجیتال طلا." },
+            { id: 5, name: "وال گلد", category: "fintech", catName: "فین‌تک طلا", domain: "wallgold.ir", url: "https://wallgold.ir", desc: "سامانه معامله و نگهداری امن طلا با زیرساخت فین‌تک جهت تسهیل مبادلات طلا و پس‌انداز آنلاین." },
+            { id: 6, name: "داریک", category: "fintech", catName: "فین‌تک طلا", domain: "daric.gold", url: "https://daric.gold", desc: "پلتفرم سرمایه‌گذاری آنلاین در طلا و سکه با ارائه راهکارهای نوین حفظ ارزش پول برای کاربران خانگی و شرکت‌ها." },
+            { id: 7, name: "تکنو گلد", category: "fintech", catName: "فین‌تک طلا", domain: "technogold.gold", url: "https://technogold.gold", desc: "زیرساخت فناوری‌محور معاملات آنلاین طلای ۱۸ عیار با تکیه بر الگوریتم‌های قیمت‌گذاری لحظه‌ای و امنیت بالا." },
+            { id: 8, name: "طلاوین", category: "fintech", catName: "فین‌تک طلا", domain: "talavin.ir", url: "https://talavin.ir", desc: "سامانه پس‌انداز و معامله آنلاین طلا جهت خریدهای متناوب و سرمایه‌گذاری تدریجی در طلای استاندارد." },
+            { id: 9, name: "طلاشاپ", category: "fintech", catName: "فین‌تک طلا", domain: "talashop.ir", url: "https://talashop.ir", desc: "بازارچه و اپلیکیشن فین‌تکی معامله طلای آب‌شده و سکه با قیمت‌های شفاف و تسویه سریع." },
+            { id: 10, name: "زرپاد", category: "fintech", catName: "فین‌تک طلا", domain: "zarpad.ir", url: "https://zarpad.ir", desc: "پلتفرم کیف پول طلا و ارائه زیرساخت‌های پرداخت متصل به طلا جهت پس‌انداز و دادوستد آنلاین." },
+            { id: 11, name: "زرافزار", category: "fintech", catName: "فین‌تک طلا", domain: "zarafzar.ir", url: "https://zarafzar.ir", desc: "ارائه‌دهنده نرم‌افزارها و راهکارهای نرم‌افزاری تخصصی بازار طلا، قالکاری و حسابداری طلافروشان." },
+            { id: 12, name: "بازار طلا", category: "fintech", catName: "فین‌تک طلا", domain: "bazartala.ir", url: "https://bazartala.ir", desc: "درگاه معامله آنلاین طلا و سکه و پلتفرم اتصال خریداران به بنکداران و فروشندگان معتبر طلا." },
+            { id: 13, name: "طلا دکارت", category: "fintech", catName: "فین‌تک طلا", domain: "taladecarth.ir", url: "https://taladecarth.ir", desc: "سامانه معاملاتی و پس‌انداز طلا مبتنی بر کارت و کارت‌های هدیه طلا با پشتیبانی از تحویل فیزیکی." },
+            { id: 14, name: "همراه گلد", category: "fintech", catName: "فین‌تک طلا", domain: "hamrahgold.com", url: "https://hamrahgold.com", desc: "اپلیکیشن همراه معاملات طلا، ارائه نرخ‌های زنده بازار و بستر پس‌انداز خرد طلا." },
+            { id: 15, name: "زرمینکس", category: "fintech", catName: "فین‌تک طلا", domain: "zarminex.com", url: "https://zarminex.com", desc: "صرافی و پلتفرم معاملاتی طلای آنلاین با تمرکز بر شفافیت قیمت، عیارسنجی دقیق و امنیت معاملات." },
+            { id: 16, name: "زرنو", category: "fintech", catName: "فین‌تک طلا", domain: "zarno.ir", url: "https://zarno.ir", desc: "سامانه نوین خرید و فروش طلای آب‌شده و سرمایه‌گذاری در مسکوکات طلا به صورت ۲۴ ساعته." },
+            { id: 17, name: "آی‌گلدن", category: "fintech", catName: "فین‌تک طلا", domain: "igolden.ir", url: "https://igolden.ir", desc: "پلتفرم مدیریت سرمایه در بازار طلا و خرید آنلاین طلای عیار شده با قابلیت بازخرید آنی." },
+            { id: 18, name: "طلاین", category: "fintech", catName: "فین‌تک طلا", domain: "tlyn.ir", url: "https://tlyn.ir", desc: "سامانه معامله و خرید طلای آب‌شده آنلاین بدون اجرت و مالیات با تضمین اصالت و عیار رسمیت‌یافته." },
+            { id: 19, name: "تلدیس", category: "fintech", catName: "فین‌تک طلا", domain: "taldis.ir", url: "https://taldis.ir", desc: "پلتفرم تسهیل‌کننده معاملات طلای آب‌شده و سرمایه‌گذاری دیجیتال در مسکوکات طلا." },
+            { id: 20, name: "اینور", category: "fintech", catName: "فین‌تک طلا", domain: "invee.ir", url: "https://invee.ir", desc: "پلتفرم هوشمند سرمایه‌گذاری و مدیریت دارایی‌های طلایی جهت پوشش ریسک تورم." },
+            { id: 21, name: "گلدنما", category: "fintech", catName: "فین‌تک طلا", domain: "goldnama.ir", url: "https://goldnama.ir", desc: "سامانه نمایش نرخ، تحلیل بازار طلا و معامله آنلاین طلای عیار شده و آب‌شده." },
+            { id: 22, name: "گلدیس", category: "fintech", catName: "فین‌تک طلا", domain: "goldis.me", url: "https://goldis.me", desc: "اپلیکیشن خرید آنلاین طلای سبک و کم‌اجرت مناسب برای هدیه و پس‌اندازهای خانوار." },
+            { id: 23, name: "مهربان گلد", category: "fintech", catName: "فین‌تک طلا", domain: "mehrabangold.com", url: "https://mehrabangold.com", desc: "بستر معاملات آنلاین طلای عیار شده با پشتیبانی مستمر و خدمات تحویل در سراسر کشور." },
+            { id: 24, name: "ترب گلد", category: "fintech", catName: "فین‌تک طلا", domain: "torabgold.com", url: "https://torabgold.com", desc: "موتور جستجو و مقایسه قیمت آنلاین فروشندگان طلا و بستری برای خریدهای بی‌واسطه." },
+            { id: 25, name: "زرباما", category: "fintech", catName: "فین‌تک طلا", domain: "zarbama.com", url: "https://zarbama.com", desc: "سامانه خرید آنلاین طلای کادویی، شمش‌های کوچک و طلای سرمایه‌گذاری با گارانتی اصالت." },
+            { id: 26, name: "ریتون", category: "fintech", catName: "فین‌تک طلا", domain: "ritongold.com", url: "https://ritongold.com", desc: "پلتفرم امن سرمایه‌گذاری طلا با استفاده از فناوری کیف پول امن دیجیتال و پشتیبانی از تحویل فیزیکی." },
+            { id: 27, name: "بارز", category: "fintech", catName: "فین‌تک طلا", domain: "barezgold.com", url: "https://barezgold.com", desc: "پلتفرم پس‌انداز خرد طلا و معامله مسکوکات طلا با رویکرد ارتقای دانش مالی و حفظ ارزش پول." },
+            { id: 28, name: "زرپی", category: "fintech", catName: "فین‌تک طلا", domain: "zarpay24.com", url: "https://zarpay24.com", desc: "درگاه و کیف پول طلایی جهت پرداخت‌ها و خریدهای اعتباری متصل به ارزش طلا." },
+            { id: 29, name: "عیاره", category: "fintech", catName: "فین‌تک طلا", domain: "ayareh.ir", url: "https://ayareh.ir", desc: "سامانه عیارسنجی، سنجش ارزش آنلاین و معامله طلای آب‌شده شفاف و شناسنامه‌دار." },
+            { id: 30, name: "آتی زر", category: "fintech", catName: "فین‌تک طلا", domain: "atizar.ir", url: "https://atizar.ir", desc: "پلتفرم معاملات آتی و پیش‌خرید اعتباری طلا جهت مدیریت ریسک و سرمایه‌گذاری مطمئن." },
+
+            // فروشگاه‌ها
+            { id: 31, name: "دیجی زرگر", category: "stores", catName: "فروشگاه‌های آنلاین", domain: "digizargar.com", url: "https://digizargar.com", desc: "بزرگترین دایرکتوری و ویترین آنلاین ویترین‌داران و طلافروشان سراسر کشور با قابلیت خرید مستقیم زیورآلات." },
+            { id: 32, name: "دیجی کالا (بخش طلا)", category: "stores", catName: "فروشگاه‌های آنلاین", domain: "digikala.com", url: "https://digikala.com", desc: "بخش اختصاصی فروش طلا، زیورآلات و شمش‌های استاندارد در پلتفرم دیجی‌کالا همراه با تضمین اصالت کالا." },
+            { id: 33, name: "شمس من", category: "stores", catName: "فروشگاه‌های آنلاین", domain: "my-shams.ir", url: "https://my-shams.ir", desc: "فروشگاه تخصصی سفارش و خرید آنلاین طلا، جواهرات سفارشی و شمش‌های استاندارد." },
+            { id: 34, name: "زریاب گلد", category: "stores", catName: "فروشگاه‌های آنلاین", domain: "zaryab.gold", url: "https://zaryab.gold", desc: "سامانه عرضه زیورآلات طلا و مصنوعات طلا همراه با شناسنامه معتبر و امکان ارسال امن." },
+            { id: 35, name: "زرین آگاه", category: "stores", catName: "فروشگاه‌های آنلاین", domain: "zarinagah.com", url: "https://zarinagah.com", desc: "پلتفرم عرضه و فروش مصنوعات طلا و زیورآلات ساخت داخل با قیمت روز بازار." },
+
+            // صندوق‌ها و بورس
+            { id: 36, name: "صندوق عیار مفید", category: "funds", catName: "بورس و صندوق‌ها", domain: "emofid.com", url: "https://emofid.com", desc: "صندوق سرمایه‌گذاری مبتنی بر گواهی سپرده طلا و سکه در بورس کالای ایران، تحت مدیریت کارگزاری مفید." },
+            { id: 37, name: "صندوق مثقال آگاه", category: "funds", catName: "بورس و صندوق‌ها", domain: "asax.ir", url: "https://asax.ir", desc: "صندوق سرمایه‌گذاری قابل معامله (ETF) طلا تحت مدیریت گروه مالی آگاه جهت سرمایه‌گذاری آسان بورس." },
+            { id: 38, name: "صندوق طلای لوتوس", category: "funds", catName: "بورس و صندوق‌ها", domain: "lotusib.ir", url: "https://lotusib.ir", desc: "نخستین صندوق کالایی طلا در بورس ایران (طلا) با نقدشوندگی بالا و مدیریت تامین سرمایه لوتوس پارسیان." },
+            { id: 39, name: "صندوق گوهر کیان", category: "funds", catName: "بورس و صندوق‌ها", domain: "kiandigital.com", url: "https://kiandigital.com", desc: "صندوق کالایی طلا با نماد گوهر جهت سرمایه‌گذاری در گواهی‌های سکه و شمش طلا تحت مدیریت کیان." },
+            { id: 40, name: "صندوق زرافشان امید", category: "funds", catName: "بورس و صندوق‌ها", domain: "omidib.com", url: "https://omidib.com", desc: "صندوق سرمایه‌گذاری مبتنی بر طلا با هدف کاهش ریسک تورم و بهره‌مندی از رشد نرخ طلا." },
+            { id: 41, name: "صندوق طلای زر", category: "funds", catName: "بورس و صندوق‌ها", domain: "zargoldfund.ir", url: "https://zargoldfund.ir", desc: "صندوق قابل معامله در بورس کالای ایران جهت مدیریت حرفه‌ای دارایی‌ها بر پایه طلا و سکه." },
+            { id: 42, name: "صندوق زمرد بیدار", category: "funds", catName: "بورس و صندوق‌ها", domain: "bidarfund.ir", url: "https://bidarfund.ir", desc: "صندوق مبتنی بر گواهی‌های طلا تحت مدیریت سبدگردان اقتصاد بیدار با نماد زمرد." },
+            { id: 43, name: "صندوق طلای درنا", category: "funds", catName: "بورس و صندوق‌ها", domain: "dornagoldfund.ir", url: "https://dornagoldfund.ir", desc: "صندوق کالایی طلا جهت پوشش ریسک سرمایه‌گذاران حقیقی و حقوقی در بورس کالای ایران." },
+            { id: 44, name: "صندوق نفیس کیان", category: "funds", catName: "بورس و صندوق‌ها", domain: "kiandigital.com", url: "https://kiandigital.com", desc: "صندوق اختصاصی سرمایه‌گذاری در طلا با بازدهی متناسب با انس و دلار از گروه مالی کیان." },
+            { id: 45, name: "صندوق طلای آتش", category: "funds", catName: "بورس و صندوق‌ها", domain: "atashfund.ir", url: "https://atashfund.ir", desc: "صندوق کالایی قابل معامله در بورس برای تخصیص بخشی از سبد دارایی به طلای فیزیکی." },
+            { id: 46, name: "صندوق طلای صبا", category: "funds", catName: "بورس و صندوق‌ها", domain: "sabafund.ir", url: "https://sabafund.ir", desc: "صندوق کالایی طلا تحت مدیریت صباتأمین جهت سرمایه‌گذاری شفاف در اوراق و شمش طلا." },
+            { id: 47, name: "صندوق کهربا کاریزما", category: "funds", catName: "بورس و صندوق‌ها", domain: "charisma.ir", url: "https://charisma.ir", desc: "صندوق قابل معامله (ETF) طلا با مدیریت گروه مالی کاریزما جهت کسب بازدهی از بازار سکه و طلا." },
+            { id: 48, name: "ره‌آورد آگاه", category: "funds", catName: "بورس و صندوق‌ها", domain: "rahavard365.com", url: "https://rahavard365.com", desc: "پلتفرم جامع تحلیل تکنیکال و بنیادی بازار سرمایه، صندوق‌های طلا، سکه و بازارهای مالی." },
+            { id: 49, name: "زرفام آشنا", category: "funds", catName: "بورس و صندوق‌ها", domain: "asnafund.ir", url: "https://asnafund.ir", desc: "صندوق سرمایه‌گذاری طلا تحت مدیریت کارگزاری سهم آشنا جهت پوشش ریسک تورم." },
+            { id: 50, name: "تابان تمدن", category: "funds", catName: "بورس و صندوق‌ها", domain: "ibshop.ir", url: "https://ibshop.ir", desc: "پلتفرم ارائه خدمات صندوق‌های سرمایه‌گذاری و صندوق‌های مبتنی بر طلا در آی‌بی‌شاپ." },
+            { id: 51, name: "قسمتا", category: "funds", catName: "بورس و صندوق‌ها", domain: "ghesmata.ir", url: "https://ghesmata.ir", desc: "سامانه تسهیل‌کننده فروش و خرید اقساطی طلا و مسکوکات با اعتبارسنجی آنلاین." },
+            { id: 52, name: "سک‌کوین", category: "funds", catName: "بورس و صندوق‌ها", domain: "seccoin.ir", url: "https://seccoin.ir", desc: "پلتفرم معامله و قیمت‌گذاری مسکوکات استاندارد طلا و گواهی‌های مرتبط." },
+            { id: 53, name: "زکوین", category: "funds", catName: "بورس و صندوق‌ها", domain: "zcoin.ir", url: "https://zcoin.ir", desc: "سامانه شفاف خرید و فروش سکه و طلای استاندارد با ارائه اطلاعات لحظه‌ای بازار." },
+
+            // تولید و پالایش
+            { id: 54, name: "پارسیس گلد", category: "production", catName: "تولید و پالایش", domain: "parsisgold.com", url: "https://parsisgold.com", desc: "تولیدکننده انواع شمش‌های استاندارد طلا و مسکوکات با عیار قانونی و بسته‌بندی امنیتی." },
+            { id: 55, name: "خانه سکه ایران", category: "production", catName: "تولید و پالایش", domain: "khaneseke.com", url: "https://khaneseke.com", desc: "تولیدکننده شمش‌های کادویی و سرمایه‌گذاری طلا و نقره با مجوزهای رسمی و استانداردهای بین‌المللی." },
+            { id: 56, name: "زرین شمش", category: "production", catName: "تولید و پالایش", domain: "zarinshams.com", url: "https://zarinshams.com", desc: "کارخانه پالایش و ضرب شمش‌های استاندارد طلا با شناسنامه و کدهای هولوگرام امنیتی." },
+            { id: 57, name: "آریا شمش", category: "production", catName: "تولید و پالایش", domain: "aryashams.com", url: "https://aryashams.com", desc: "تولیدکننده و عرضه‌کننده شمش‌های طلا در وزن‌ها و عیارهای مختلف برای سرمایه‌گذاران." },
+            { id: 58, name: "ایران شمش", category: "production", catName: "تولید و پالایش", domain: "iranshams.com", url: "https://iranshams.com", desc: "مجموعه ساخت و ضرب شمش‌های معتبر و لوکس طلا و نقره دارنده گواهی استانداردهای ملی." },
+            { id: 59, name: "کارخانه طلای زرشوران", category: "production", catName: "تولید و پالایش", domain: "zarshouran.ir", url: "https://zarshouran.ir", desc: "بزرگترین واحد تولید و پالایش شمش طلا در خاورمیانه وابسته به سازمان ایمیدرو." },
+            { id: 60, name: "کارخانه طلای ساریگونی", category: "production", catName: "تولید و پالایش", domain: "sarigunigold.ir", url: "https://sarigunigold.ir", desc: "مجتمع صنعتی و معدنی استخراج و پالایش شمش‌های طلا با ظرفیت تولید بالا." },
+            { id: 61, name: "معدن طلای آق‌دره", category: "production", catName: "تولید و پالایش", domain: "agh-darreh.com", url: "https://agh-darreh.com", desc: "از معادن اصلی استخراج و فرآوری سنگ طلا و تامین‌کننده خاکی طلا در کشور." },
+            { id: 62, name: "معدن طلای موته", category: "production", catName: "تولید و پالایش", domain: "motehgold.ir", url: "https://motehgold.ir", desc: "قدیمی‌ترین مجتمع معدنی فرآوری و پالایش شمش طلای استاندارد در ایران." },
+            { id: 63, name: "شرکت زرجویان پاسارگاد", category: "production", catName: "تولید و پالایش", domain: "zarjouyan.com", url: "https://zarjouyan.com", desc: "شرکت بازیافت تخصصی فلزات گرانبها، قالکاری صنعتی و پالایش خاک و ضایعات طلا." },
+            { id: 64, name: "شرکت طلاکام", category: "production", catName: "تولید و پالایش", domain: "goldkam.ir", url: "https://goldkam.ir", desc: "مجموعه ارائه خدمات استخراج، پالایش و قالکاری صنعتی فلزات گرانبها." },
+            { id: 65, name: "شرکت اسقاط آنلاین", category: "production", catName: "تولید و پالایش", domain: "esghatonline.com", url: "https://esghatonline.com", desc: "پلتفرم بازیافت کاتالیست‌ها و قطعات الکترونیکی جهت استخراج فلزات گرانبها از جمله طلا." },
+            { id: 66, name: "بازیافت الکترونیک کاسپین", category: "production", catName: "تولید و پالایش", domain: "caspianrecycling.com", url: "https://caspianrecycling.com", desc: "مرکز تخصصی بازیافت ضایعات الکترونیکی و جداسازی فلزات باارزش همچون طلا و نقره." },
+            { id: 67, name: "امرالد بازیافت", category: "production", catName: "تولید و پالایش", domain: "emeraldrecycle.com", url: "https://emeraldrecycle.com", desc: "شرکت فرآوری و استخراج طلای صنعتی از قطعات برد و پسماندهای الکترونیکی." },
+            { id: 68, name: "قالکاری ۹۹۵", category: "production", catName: "تولید و پالایش", domain: "ghalkari995.com", url: "https://ghalkari995.com", desc: "کارگاه قالکاری تخصصی، ذوب، سنجش عیار و پالایش دقیق طلاهای متفرقه." },
+
+            // لجستیک و بیمه
+            { id: 69, name: "قسطا", category: "logistics", catName: "لجستیک و لندتک", domain: "ghesta.ir", url: "https://ghesta.ir", desc: "پلتفرم ارائه تسهیلات خرید اقساطی کالاهای باارزش و طلا از طریق کارت‌های اعتباری." },
+            { id: 70, name: "دیجی شهر", category: "logistics", catName: "لجستیک و لندتک", domain: "digishahr.com", url: "https://digishahr.com", desc: "سامانه خرید اعتباری و اقساطی کالاها و طلا با همکاری بانک‌ها و موسسات مالی." },
+            { id: 71, name: "پست ویژه و اسکورت بانکی", category: "logistics", catName: "لجستیک و بیمه", domain: "post.ir", url: "https://post.ir", desc: "خدمات حمل‌ونقل تخصصی، محموله‌های باارزش، طلای فیزیکی و اسکورت با امنیت ویژه." },
+            { id: 72, name: "تیپاکس ویژه ارسال امن", category: "logistics", catName: "لجستیک و بیمه", domain: "tipaxco.com", url: "https://tipaxco.com", desc: "خدمات ارسال سریع و بیمه‌شده بسته‌های باارزش و قیمتی در سراسر کشور." },
+            { id: 73, name: "بیمه ایران (پوشش طلا)", category: "logistics", catName: "لجستیک و بیمه", domain: "iraninsurance.ir", url: "https://iraninsurance.ir", desc: "ارائه‌دهنده بیمه‌نامه‌های تخصصی سرقت، آتش‌سوزی و جابه‌جایی برای طلافروشان و کارگاه‌ها." },
+            { id: 74, name: "بیمه آسیا (پوشش طلا)", category: "logistics", catName: "لجستیک و بیمه", domain: "bimehasia.com", url: "https://bimehasia.com", desc: "ارائه پوشش‌های جامع بیمه‌ای جهت ریسک‌های ترانزیت، انبارداری و فروشگاهی طلا." },
+            { id: 75, name: "بیمه البرز (پوشش طلا)", category: "logistics", catName: "لجستیک و بیمه", domain: "alborzinsurance.ir", url: "https://alborzinsurance.ir", desc: "خدمات بیمه فلزات گرانبها، صرافی‌ها و صندوق‌های امانات در برابر حوادث و سرقت." },
+            { id: 76, name: "گلدباکس / امانت‌داران طلا", category: "logistics", catName: "لجستیک و بیمه", domain: "goldbox.ir", url: "https://goldbox.ir", desc: "ارائه‌دهنده خدمات صندوق امانات شخصی و صیانتی جهت نگهداری امن طلا و سکه." },
+
+            // نهادها
+            { id: 77, name: "بانک مرکزی ج.ا.ا", category: "regulators", catName: "نهادهای قانونی", domain: "cbi.ir", url: "https://cbi.ir", desc: "نهاد ناظر، سیاست‌گذار پولی و سیاست‌گذار اصلی بازار طلا، سکه و ضرب مسکوکات در کشور." },
+            { id: 78, name: "مرکز مبادله ارز و طلای ایران", category: "regulators", catName: "نهادهای قانونی", domain: "ice.ir", url: "https://ice.ir", desc: "بستر رسمی عرضه، حراج سکه، واردات شمش طلا و کشف نرخ رسمی طلای کشور." },
+            { id: 79, name: "اتحادیه طلا و جواهر تهران", category: "regulators", catName: "نهادهای قانونی", domain: "estj.ir", url: "https://estj.ir", desc: "نهاد صنفی تنظیم‌گر، صادرکننده پروانه‌های کسب، نظارت بر نرخ‌ها و آزمایشگاه‌های عیارسنجی." },
+            { id: 80, name: "سامانه جامع تجارت (بخش طلا)", category: "regulators", catName: "نهادهای قانونی", domain: "ntsw.ir", url: "https://ntsw.ir", desc: "سامانه وزارت صمت برای ثبت معاملات، کد رهگیری و شفاف‌سازی زنجیره تامین طلا." }
+        ];
+
+        function renderCards(data) {
+            const grid = document.getElementById('bizGrid');
+            grid.innerHTML = '';
+            
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'biz-card';
+                card.setAttribute('data-category', item.category);
+                card.onclick = () => openProfile(item.id);
+
+                // حرف اول نام برای لوگو
+                const firstLetter = item.name.trim().charAt(0);
+
+                card.innerHTML = `
+                    <div>
+                        <div class="biz-header">
+                            <div class="biz-logo">${firstLetter}</div>
+                            <div class="biz-info">
+                                <h3>${item.name}</h3>
+                                <span class="tag">${item.catName}</span>
+                            </div>
+                        </div>
+                        <p class="biz-desc-short">${item.desc}</p>
+                    </div>
+                    <div class="biz-footer">
+                        <span>مشاهده پروفایل کامل</span>
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            document.getElementById('totalCount').innerText = data.length;
+        }
+
+        function openProfile(id) {
+            const item = items.find(x => x.id === id);
+            if (!item) return;
+
+            document.getElementById('modalLogo').innerText = item.name.trim().charAt(0);
+            document.getElementById('modalName').innerText = item.name;
+            document.getElementById('modalCategory').innerText = item.catName;
+            document.getElementById('modalDesc').innerText = item.desc;
+            document.getElementById('modalDomain').innerText = item.domain;
+            document.getElementById('modalLink').href = item.url;
+
+            document.getElementById('profileModal').classList.add('active');
+        }
+
+        function closeProfile() {
+            document.getElementById('profileModal').classList.remove('active');
+        }
+
+        function filterCategory(cat, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            if (cat === 'all') {
+                renderCards(items);
+            } else {
+                const filtered = items.filter(i => i.category === cat);
+                renderCards(filtered);
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase().trim();
+            const filtered = items.filter(i => 
+                i.name.toLowerCase().includes(query) || 
+                i.domain.toLowerCase().includes(query) ||
+                i.desc.toLowerCase().includes(query)
+            );
+            renderCards(filtered);
+        });
+
+        // بستن پاپ‌آپ با کلیک بیرون از کارد
+        window.onclick = function(event) {
+            const modal = document.getElementById('profileModal');
+            if (event.target == modal) {
+                closeProfile();
+            }
+        }
+
+        // بارگذاری اولیه
+        renderCards(items);
+    </script>
+</body>
+</html>
