@@ -3,428 +3,460 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اطلس پل | مرجع اکوسیستم‌های ایران</title>
-    <meta name="description" content="نقشه جامع و فعالان اکوسیستم‌های نوآوری و اقتصاد دیجیتال ایران.">
+    <title>اطلس اکوسیستم طلا و فناوری‌های مالی ایران</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
     <style>
         :root {
-            --bg-main: #0B0F19;
-            --bg-card: rgba(22, 30, 49, 0.7);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --accent-primary: #3B82F6;
-            --accent-glow: rgba(59, 130, 246, 0.3);
-            --text-main: #F8FAFC;
-            --text-muted: #94A3B8;
-            --radius-md: 12px;
+            --bg-dark: #06090e;
+            --card-bg: rgba(15, 23, 42, 0.65);
+            --card-border: rgba(212, 175, 55, 0.18);
+            --gold-primary: #f59e0b;
+            --gold-light: #fef08a;
+            --gold-gradient: linear-gradient(135deg, #d97706, #f59e0b, #fef08a, #b45309);
+            --gold-glow: 0 0 30px rgba(245, 158, 11, 0.22);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
             --radius-lg: 20px;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Vazirmatn', sans-serif;
-            transition: all 0.25s ease;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        
         body {
-            background-color: var(--bg-main);
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.06) 0%, transparent 40%),
+                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
             color: var(--text-main);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.08) 0%, transparent 40%);
+            padding-bottom: 4rem;
         }
 
-        /* Header (با منوی یکپارچه) */
-        .header-container {
-            border-bottom: 1px solid var(--border-color);
-            backdrop-filter: blur(12px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(11, 15, 25, 0.85);
+        /* Glassmorphism Header */
+        .header {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(6, 9, 14, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
         }
 
         .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 4%;
+            max-width: 1400px; margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
-        .brand-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--text-main);
-        }
+        .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; color: #fff; }
 
         .brand-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            color: #fff;
-            box-shadow: 0 4px 20px var(--accent-glow);
+            width: 50px; height: 50px;
+            background: var(--gold-gradient);
+            border-radius: 14px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; color: #0f172a;
+            box-shadow: var(--gold-glow);
         }
 
-        .brand-text h1 {
-            font-size: 1.15rem;
-            font-weight: 800;
+        .brand-text h1 { 
+            font-size: 1.35rem; font-weight: 900; 
+            background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
         }
+        .brand-text span { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 1px; }
 
-        .brand-text span {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            display: block;
-        }
-
-        .btn-add {
-            background: rgba(59, 130, 246, 0.1);
-            color: #60A5FA;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius-md);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-        }
-
-        .btn-add:hover {
-            background: var(--accent-primary);
-            color: #fff;
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        /* Nav Categories Inside Header */
-        .header-nav {
+        /* Filter Tabs */
+        .categories-container {
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 0.6rem 4%;
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            scrollbar-width: none;
+            background: rgba(15, 23, 42, 0.3);
+        }
+        
+        .categories-bar {
+            max-width: 1400px; margin: 0 auto; padding: 0.8rem 2rem;
+            display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none;
         }
 
-        .header-nav::-webkit-scrollbar {
-            display: none;
+        .cat-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-muted); padding: 0.65rem 1.4rem;
+            border-radius: 30px; font-size: 0.85rem; font-weight: 500;
+            cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 8px;
         }
 
-        .nav-btn {
-            white-space: nowrap;
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            padding: 0.4rem 0.9rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+        .cat-btn:hover {
+            background: rgba(245, 158, 11, 0.12);
+            border-color: rgba(245, 158, 11, 0.4);
+            color: var(--gold-light);
         }
 
-        .nav-btn:hover, .nav-btn.active {
-            background: rgba(59, 130, 246, 0.15);
-            color: #60A5FA;
+        .cat-btn.active {
+            background: var(--gold-gradient);
+            color: #0b0f19; font-weight: 800; border-color: transparent;
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.35);
         }
 
-        .nav-btn.active {
-            font-weight: 700;
-            background: var(--accent-primary);
-            color: #fff;
-        }
-
-        /* Hero & Search */
-        .hero {
-            padding: 3rem 1rem 1.5rem 1rem;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h2 {
-            font-size: 2.2rem;
-            font-weight: 900;
-            background: linear-gradient(180deg, #FFFFFF 0%, #94A3B8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1.5rem;
-        }
-
-        .search-container {
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 0.9rem 1.2rem 0.9rem 3rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            color: #fff;
-            font-size: 0.95rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 1.2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-        }
-
-        /* Grid Section */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem 4rem 1.5rem;
-            flex-grow: 1;
-            width: 100%;
-        }
-
-        .companies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.25rem;
-        }
-
-        .company-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            backdrop-filter: blur(10px);
-        }
-
-        .company-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(59, 130, 246, 0.4);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 0.8rem;
-        }
-
-        .company-logo {
-            width: 46px;
-            height: 46px;
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-        }
-
-        .company-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-        }
-
+        /* Hero Banner & Quick Stats */
+        .hero { text-align: center; padding: 3.5rem 1rem 2rem; max-width: 900px; margin: 0 auto; }
+        
         .badge {
-            display: inline-block;
-            font-size: 0.7rem;
-            padding: 2px 8px;
-            border-radius: 12px;
-            margin-top: 2px;
-            background: rgba(255,255,255,0.08);
-            color: var(--text-muted);
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3);
+            color: var(--gold-primary); padding: 0.4rem 1.2rem; border-radius: 20px;
+            font-size: 0.8rem; font-weight: 600; margin-bottom: 1.2rem;
         }
 
-        .company-desc {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            line-height: 1.6;
-            margin-bottom: 1.25rem;
+        .hero h2 { font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem; line-height: 1.3; }
+        .hero p { color: var(--text-muted); font-size: 1rem; margin-bottom: 2.5rem; line-height: 1.7; }
+
+        /* Quick Stats Grid */
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+            margin-bottom: 2.5rem; text-align: right;
         }
 
-        .card-footer {
-            border-top: 1px solid var(--border-color);
-            padding-top: 0.8rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.8rem;
+        .stat-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            padding: 1.2rem; border-radius: 16px; backdrop-filter: blur(10px);
+        }
+        .stat-card .num { font-size: 1.6rem; font-weight: 900; color: var(--gold-light); }
+        .stat-card .label { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+
+        /* Search Box & Controls */
+        .controls-row {
+            display: flex; gap: 1rem; justify-content: center; align-items: center;
+            max-width: 700px; margin: 0 auto;
         }
 
-        .card-link {
-            color: #60A5FA;
-            text-decoration: none;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+        .search-box { position: relative; flex-grow: 1; }
+
+        .search-box input {
+            width: 100%; padding: 1.1rem 1.5rem 1.1rem 3.5rem;
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 20px; color: #fff; font-size: 1rem;
+            backdrop-filter: blur(10px);
         }
 
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-            padding: 1.5rem;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            background: rgba(11, 15, 25, 0.5);
+        .search-box input:focus {
+            outline: none; border-color: var(--gold-primary);
+            box-shadow: var(--gold-glow);
         }
 
-        @media (max-width: 768px) {
-            .hero h2 { font-size: 1.7rem; }
-            .btn-add span { display: none; }
+        .search-box i {
+            position: absolute; left: 1.4rem; top: 50%; transform: translateY(-50%);
+            color: var(--gold-primary); font-size: 1.2rem;
+        }
+
+        .view-btn {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            color: var(--text-muted); width: 50px; height: 50px; border-radius: 18px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+        }
+        .view-btn:hover, .view-btn.active { color: var(--gold-primary); border-color: var(--gold-primary); }
+
+        /* Main Grid & Cards */
+        .main-container { max-width: 1400px; margin: 0 auto; padding: 2.5rem 2rem; }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cards-grid.list-view {
+            grid-template-columns: 1fr;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 1.35rem; text-decoration: none; color: inherit;
+            display: flex; align-items: center; gap: 16px;
+            backdrop-filter: blur(12px);
+            position: relative; overflow: hidden;
+        }
+
+        .card::before {
+            content: ''; position: absolute; top: 0; right: 0; width: 100%; height: 3px;
+            background: var(--gold-gradient); opacity: 0; transition: opacity 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(245, 158, 11, 0.5);
+            box-shadow: var(--gold-glow);
+        }
+
+        .card:hover::before { opacity: 1; }
+
+        .logo-box {
+            width: 62px; height: 62px; border-radius: 16px;
+            background: #ffffff; border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; flex-shrink: 0; padding: 6px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .logo-box img { width: 100%; height: 100%; object-fit: contain; border-radius: 8px; }
+
+        .card-info { flex-grow: 1; overflow: hidden; }
+        .card-info h3 { font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card-info .domain { font-size: 0.8rem; color: var(--gold-light); direction: ltr; text-align: right; font-family: monospace; }
+        .card-info .cat-tag { 
+            font-size: 0.7rem; color: var(--text-muted); margin-top: 6px; display: inline-block;
+            background: rgba(255,255,255,0.04); padding: 2px 8px; border-radius: 8px;
+        }
+
+        .card-arrow { color: var(--text-muted); font-size: 0.9rem; opacity: 0.4; }
+        .card:hover .card-arrow { color: var(--gold-primary); opacity: 1; transform: translateX(-50%); }
+
+        @media (max-width: 900px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero h2 { font-size: 1.8rem; }
+        }
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .cards-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header (با منوی یکپارچه) -->
-    <header class="header-container">
+    <header class="header">
         <div class="navbar">
-            <a href="#" class="brand-logo">
-                <div class="brand-icon"><i class="fa-solid fa-network-wired"></i></div>
+            <a href="#" class="brand">
+                <div class="brand-icon"><i class="fa-solid fa-coins"></i></div>
                 <div class="brand-text">
-                    <h1>اطلس پل</h1>
-                    <span>Pol Atlas | Digital Economy</span>
+                    <h1>اطلس اکوسیستم طلا</h1>
+                    <span>Iran GoldTech Digital Map</span>
                 </div>
-            </a>
-            <a href="https://t.me/" target="_blank" class="btn-add">
-                <i class="fa-solid fa-plus"></i>
-                <span>ثبت کسب‌وکار</span>
             </a>
         </div>
 
-        <!-- منوی دسته‌بندی در هدر -->
-        <nav class="header-nav" id="categoryNav">
-            <button class="nav-btn active" data-filter="all"><i class="fa-solid fa-border-all"></i> همه حوزه‌ها</button>
-            <button class="nav-btn" data-filter="gold"><i class="fa-solid fa-coins"></i> اکوسیستم طلا</button>
-            <button class="nav-btn" data-filter="ai"><i class="fa-solid fa-brain"></i> هوش مصنوعی</button>
-            <button class="nav-btn" data-filter="crypto"><i class="fa-solid fa-bitcoin-sign"></i> رمزارز و بلاک‌چین</button>
-            <button class="nav-btn" data-filter="insur"><i class="fa-solid fa-shield-halved"></i> بیمه</button>
-            <button class="nav-btn" data-filter="vc"><i class="fa-solid fa-chart-line"></i> سرمایه‌گذاری (VC)</button>
-            <button class="nav-btn" data-filter="creative"><i class="fa-solid fa-wand-magic-sparkles"></i> صنایع خلاق</button>
-        </nav>
+        <div class="categories-container">
+            <nav class="categories-bar">
+                <button class="cat-btn active" data-filter="all"><i class="fa-solid fa-layer-group"></i> همه فعالان (۸۱)</button>
+                <button class="cat-btn" data-filter="fintech"><i class="fa-solid fa-mobile-screen-button"></i> فین‌تک و خرید آنلاین</button>
+                <button class="cat-btn" data-filter="market"><i class="fa-solid fa-chart-line"></i> بورس و صندوق‌های طلا</button>
+                <button class="cat-btn" data-filter="shop"><i class="fa-solid fa-store"></i> فروشگاه‌های دیجیتال</button>
+                <button class="cat-btn" data-filter="refinery"><i class="fa-solid fa-industry"></i> تولید، شمش و معادن</button>
+                <button class="cat-btn" data-filter="logistics"><i class="fa-solid fa-shield-halved"></i> لجستیک، لندتک و بیمه</button>
+                <button class="cat-btn" data-filter="gov"><i class="fa-solid fa-building-columns"></i> نهادها و سامانه‌ها</button>
+            </nav>
+        </div>
     </header>
 
-    <!-- Hero -->
     <section class="hero">
-        <h2>اطلس جامع اکوسیستم‌های ایران</h2>
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="جستجوی نام کسب‌وکار، حوزه فعالیت یا تکنولوژی...">
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <div class="badge"><i class="fa-solid fa-sparkles"></i> جامع‌ترین دایرکتوری صنعت طلا و فین‌تک ایران</div>
+        <h2>نقشه جامع بازیگران اکوسیستم طلا</h2>
+        <p>دسترسی مستقیم و یکپارچه به پلتفرم‌های خرید آنلاین، صندوق‌های سرمایه‌گذاری ETF، پالایشگاه‌ها و نهادهای ناظر</p>
+
+        <!-- آمار سریع اکوسیستم -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="num">۳۰+</div>
+                <div class="label">پلتفرم فین‌تک طلا</div>
+            </div>
+            <div class="stat-card">
+                <div class="num">۱۹</div>
+                <div class="label">صندوق طلا و بورس</div>
+            </div>
+            <div class="stat-card">
+                <div class="num">۱۵</div>
+                <div class="label">تولیدکننده و معدن</div>
+            </div>
+            <div class="stat-card">
+                <div class="num">۱۷+</div>
+                <div class="label">خدمات لجستیک و ناظر</div>
+            </div>
+        </div>
+
+        <!-- کادر جستجو و کنترل نمایش -->
+        <div class="controls-row">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="جستجوی نام برند، صندوق، معدن یا آدرس وب‌سایت...">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <button class="view-btn active" id="gridViewBtn" title="نمای شبکه‌ای"><i class="fa-solid fa-border-all"></i></button>
+            <button class="view-btn" id="listViewBtn" title="نمای لیستی"><i class="fa-solid fa-list"></i></button>
         </div>
     </section>
 
-    <!-- Main Grid -->
-    <main class="container">
-        <div class="companies-grid" id="companiesGrid">
-            
-            <article class="company-card" data-category="gold">
-                <div>
-                    <div class="card-header">
-                        <div class="company-logo" style="color:#F59E0B; background:rgba(245,158,11,0.15)">Au</div>
-                        <div>
-                            <h3 class="company-title">طلیعه طلا</h3>
-                            <span class="badge">اکوسیستم طلا</span>
-                        </div>
-                    </div>
-                    <p class="company-desc">پلتفرم معاملات آنلاین و سرمایه‌گذاری خرد در بازار طلا و شمش.</p>
-                </div>
-                <div class="card-footer">
-                    <span style="color:var(--text-muted);"><i class="fa-solid fa-location-dot"></i> تهران</span>
-                    <a href="#" class="card-link">مشاهده <i class="fa-solid fa-arrow-left"></i></a>
-                </div>
-            </article>
-
-            <article class="company-card" data-category="insur">
-                <div>
-                    <div class="card-header">
-                        <div class="company-logo" style="color:#10B981; background:rgba(16,185,129,0.15)">IN</div>
-                        <div>
-                            <h3 class="company-title">بیمه‌گر هوشمند</h3>
-                            <span class="badge">بیمه</span>
-                        </div>
-                    </div>
-                    <p class="company-desc">ارائه‌دهنده خدمات آنلاین و مقایسه انواع بیمه‌نامه‌ها.</p>
-                </div>
-                <div class="card-footer">
-                    <span style="color:var(--text-muted);"><i class="fa-solid fa-location-dot"></i> تهران</span>
-                    <a href="#" class="card-link">مشاهده <i class="fa-solid fa-arrow-left"></i></a>
-                </div>
-            </article>
-
+    <main class="main-container">
+        <div class="cards-grid" id="cardsGrid">
+            <!-- کارت‌ها اتوماتیک بر اساس داده‌های Sheet3 اکسل رندر می‌شوند -->
         </div>
     </main>
 
-    <footer>
-        <p>طراحی و توسعه برای اطلس پل © ۱۴۰۳ - تمامی حقوق محفوظ است.</p>
-    </footer>
-
     <script>
-        const filterBtns = document.querySelectorAll('.nav-btn');
-        const cards = document.querySelectorAll('.company-card');
+        const ecosystemData = [
+            // فین‌تک و فناوری‌های مالی طلا
+            { name: "زربان", url: "servatafza.ir", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "گلدیکا", url: "goldika.ir", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "میلی گلد", url: "milli.gold", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "طلاسی", url: "talasea.ir", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "وال گلد", url: "wallgold.ir", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "داریک", url: "daric.gold", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "تکنو گلد", url: "technogold.gold", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "طلاوین", url: "talavin.ir", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "طلاشاپ", url: "talashop.ir", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "زرپاد", url: "zarpad.ir", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "زرافزار", url: "zarafzar.ir", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "بازار طلا", url: "bazartala.ir", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "طلا دکارت", url: "taladecarth.ir", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "همراه گلد", url: "hamrahgold.com", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "زرمینکس", url: "zarminex.com", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "زرنو", url: "zarno.ir", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "آی‌گلدن", url: "igolden.ir", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "طلاین", url: "tlyn.ir", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "تلدیس", url: "taldis.ir", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "اینوی", url: "invee.ir", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "گلدنما", url: "goldnama.ir", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "گلدیس", url: "goldis.me", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "مهربان گلد", url: "mehrabangold.com", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "ترب گلد", url: "torabgold.com", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "زرباما", url: "zarbama.com", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "ریتون", url: "ritongold.com", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "بارز", url: "barezgold.com", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "زرپی", url: "zarpay24.com", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "عیاره", url: "ayareh.ir", cat: "fintech", catName: "فین‌تک طلا" },
+            { name: "آتی زر", url: "atizar.ir", cat: "fintech", catName: "فین‌تک طلا" },
+
+            // فروشگاه‌ها
+            { name: "دیجی زرگر", url: "digizargar.com", cat: "shop", catName: "فروشگاه آنلاین" },
+            { name: "طلا دیجی‌کالا", url: "digikala.com", cat: "shop", catName: "فروشگاه آنلاین" },
+            { name: "شمس من", url: "my-shams.ir", cat: "shop", catName: "فروشگاه آنلاین" },
+            { name: "زریاب گلد", url: "zaryab.gold", cat: "shop", catName: "فروشگاه آنلاین" },
+            { name: "زرین آگاه", url: "zarinagah.com", cat: "shop", catName: "فروشگاه آنلاین" },
+
+            // بازار سرمایه و بورس
+            { name: "صندوق عیار مفید", url: "emofid.com", cat: "market", catName: "صندوق طلا (ETF)" },
+            { name: "صندوق مثقال آگاه", url: "asax.ir", cat: "market", catName: "صندوق طلا (ETF)" },
+            { name: "صندوق طلای لوتوس", url: "lotusib.ir", cat: "market", catName: "صندوق طلا (ETF)" },
+            { name: "صندوق گوهر کیان", url: "kiandigital.com", cat: "market", catName: "صندوق طلا (ETF)" },
+            { name: "صندوق زرافشان", url: "omidib.com", cat: "market", catName: "صندوق طلا (ETF)" },
+            { name: "صندوق طلای زر", url: "zargoldfund.ir", cat: "market", catName: "صندوق طلا (ETF)" },
+            { name: "صندوق زمرد بیدار", url: "bidarfund.ir", cat: "market", catName: "صندوق طلا (ETF)" },
+            { name: "صندوق طلای درنا", url: "dornagoldfund.ir", cat: "market", catName: "صندوق طلا (ETF)" },
+            { name: "صندوق نفیس کیان", url: "kiandigital.com", cat: "market", catName: "صندوق طلا (ETF)" },
+            { name: "صندوق طلای آتش", url: "atashfund.ir", cat: "market", catName: "صندوق طلا (ETF)" },
+            { name: "صندوق طلای صبا", url: "sabafund.ir", cat: "market", catName: "صندوق طلا (ETF)" },
+            { name: "صندوق کهربا کاریزما", url: "charisma.ir", cat: "market", catName: "صندوق طلا (ETF)" },
+            { name: "کیان دیجیتال", url: "kiandigital.com", cat: "market", catName: "بازار سرمایه" },
+            { name: "ره‌آورد ۳۶۵", url: "rahavard365.com", cat: "market", catName: "تحلیل بازار" },
+            { name: "زرفام آشنا", url: "asnafund.ir", cat: "market", catName: "صندوق طلا" },
+            { name: "تابان تمدن", url: "ibshop.ir", cat: "market", catName: "سرمایه‌گذاری" },
+            { name: "قسمتا", url: "ghesmata.ir", cat: "market", catName: "فروش اقساطی" },
+            { name: "سک‌کوین", url: "seccoin.ir", cat: "market", catName: "معاملات طلا" },
+            { name: "زکوین", url: "zcoin.ir", cat: "market", catName: "معاملات طلا" },
+
+            // تولید و پالایش
+            { name: "پارسیس گلد", url: "parsisgold.com", cat: "refinery", catName: "شمش و مسکوکات" },
+            { name: "خانه سکه ایران", url: "khaneseke.com", cat: "refinery", catName: "مسکوکات و شمش" },
+            { name: "زرین شمش", url: "zarinshams.com", cat: "refinery", catName: "تولید شمش" },
+            { name: "آریا شمش", url: "aryashams.com", cat: "refinery", catName: "تولید شمش" },
+            { name: "ایران شمش", url: "iranshams.com", cat: "refinery", catName: "تولید شمش" },
+            { name: "کارخانه طلای زرشوران", url: "zarshouran.ir", cat: "refinery", catName: "معدن و پالایش" },
+            { name: "کارخانه ساریگونی", url: "sarigunigold.ir", cat: "refinery", catName: "معدن طلا" },
+            { name: "معدن آق‌دره", url: "agh-darreh.com", cat: "refinery", catName: "معدن طلا" },
+            { name: "معدن موته", url: "motehgold.ir", cat: "refinery", catName: "معدن طلا" },
+            { name: "زرجویان پاسارگاد", url: "zarjouyan.com", cat: "refinery", catName: "قالکاری و بازیافت" },
+            { name: "طلاکام", url: "goldkam.ir", cat: "refinery", catName: "تولید و بازیافت" },
+            { name: "اسقاط آنلاین", url: "esghatonline.com", cat: "refinery", catName: "بازیافت طلا" },
+            { name: "کاسپین ریسرچ", url: "caspianrecycling.com", cat: "refinery", catName: "بازیافت الکترونیک" },
+            { name: "امرالد", url: "emeraldrecycle.com", cat: "refinery", catName: "بازیافت ضایعات" },
+            { name: "قالکاری ۹۹۵", url: "ghalkari995.com", cat: "refinery", catName: "قالکاری تخصصی" },
+
+            // لجستیک و امنیت
+            { name: "قسطا", url: "ghesta.ir", cat: "logistics", catName: "لندتک و اقساط" },
+            { name: "دیجی شهر", url: "digishahr.com", cat: "logistics", catName: "لندتک و خرید طلا" },
+            { name: "شرکت ملی پست", url: "post.ir", cat: "logistics", catName: "حمل امن و اسکورت" },
+            { name: "تیپاکس ویژه", url: "tipaxco.com", cat: "logistics", catName: "ارسال امن" },
+            { name: "بیمه ایران", url: "iraninsurance.ir", cat: "logistics", catName: "بیمه تخصصی طلا" },
+            { name: "بیمه آسیا", url: "bimehasia.com", cat: "logistics", catName: "بیمه تخصصی طلا" },
+            { name: "بیمه البرز", url: "alborzinsurance.ir", cat: "logistics", catName: "بیمه تخصصی طلا" },
+            { name: "گلدباکس", url: "goldbox.ir", cat: "logistics", catName: "صندوق امانات" },
+
+            // نهادها
+            { name: "بانک مرکزی ایران", url: "cbi.ir", cat: "gov", catName: "نهاد ناظر" },
+            { name: "مرکز مبادله ارز و طلا", url: "ice.ir", cat: "gov", catName: "بازار رسمی" },
+            { name: "اتحادیه طلا و جواهر", url: "estj.ir", cat: "gov", catName: "اتحادیه صنف" },
+            { name: "سامانه جامع تجارت", url: "ntsw.ir", cat: "gov", catName: "وزارت صمت" }
+        ];
+
+        const cardsGrid = document.getElementById('cardsGrid');
         const searchInput = document.getElementById('searchInput');
+        const catBtns = document.querySelectorAll('.cat-btn');
+        const gridViewBtn = document.getElementById('gridViewBtn');
+        const listViewBtn = document.getElementById('listViewBtn');
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                const filter = btn.getAttribute('data-filter');
-                filterCards(filter, searchInput.value.toLowerCase());
-            });
-        });
+        function renderCards(data) {
+            cardsGrid.innerHTML = '';
+            data.forEach(item => {
+                const card = document.createElement('a');
+                card.className = 'card';
+                card.href = item.url ? `https://${item.url}` : '#';
+                card.target = "_blank";
 
-        searchInput.addEventListener('input', (e) => {
-            const activeFilter = document.querySelector('.nav-btn.active').getAttribute('data-filter');
-            filterCards(activeFilter, e.target.value.toLowerCase());
-        });
+                const logoUrl = item.url ? `https://logo.clearbit.com/${item.url}` : '';
+                const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(item.name)}&background=f59e0b&color=000&bold=true`;
 
-        function filterCards(category, query) {
-            cards.forEach(card => {
-                const cardCat = card.getAttribute('data-category');
-                const text = card.textContent.toLowerCase();
-                
-                const matchesCat = category === 'all' || cardCat === category;
-                const matchesSearch = text.includes(query);
-
-                if (matchesCat && matchesSearch) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
+                card.innerHTML = `
+                    <div class="logo-box">
+                        <img src="${logoUrl}" onerror="this.onerror=null; this.src='${fallbackAvatar}';" alt="${item.name}">
+                    </div>
+                    <div class="card-info">
+                        <h3>${item.name}</h3>
+                        <div class="domain">${item.url || '---'}</div>
+                        <span class="cat-tag">${item.catName}</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-left card-arrow"></i>
+                `;
+                cardsGrid.appendChild(card);
             });
         }
+
+        renderCards(ecosystemData);
+
+        // فیلتر دسته‌بندی
+        catBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                catBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterData();
+            });
+        });
+
+        // جستجو
+        searchInput.addEventListener('input', filterData);
+
+        function filterData() {
+            const activeCat = document.querySelector('.cat-btn.active').dataset.filter;
+            const query = searchInput.value.toLowerCase().trim();
+
+            const filtered = ecosystemData.filter(item => {
+                const matchesCat = activeCat === 'all' || item.cat === activeCat;
+                const matchesSearch = item.name.toLowerCase().includes(query) || item.url.toLowerCase().includes(query);
+                return matchesCat && matchesSearch;
+            });
+
+            renderCards(filtered);
+        }
+
+        // سوئیچ نمای شبکه‌ای / لیستی
+        gridViewBtn.addEventListener('click', () => {
+            cardsGrid.classList.remove('list-view');
+            gridViewBtn.classList.add('active');
+            listViewBtn.classList.remove('active');
+        });
+
+        listViewBtn.addEventListener('click', () => {
+            cardsGrid.classList.add('list-view');
+            listViewBtn.classList.add('active');
+            gridViewBtn.classList.remove('active');
+        });
     </script>
 </body>
 </html>
