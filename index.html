@@ -3,246 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اطلس اکوسیستم‌های اقتصاد دیجیتال ایران | مرجع تحلیل و رصد صنایع پیشران</title>
-    <meta name="description" content="نقشه جامع و دایرکتوری تحلیلی اکوسیستم‌های اقتصاد دیجیتال ایران. رصد بازیگران کلیدی، فین‌تک، هوش مصنوعی و سرمایه‌گذاری.">
-    <link rel="canonical" href="https://polatlas.ir/">
+    <title>پُــل | سامانه جامع داده‌های زیست‌بوم اقتصاد دیجیتال ایران</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
 
     <style>
         :root {
-            --bg-body: #080b11;
-            --surface: #111622;
-            --surface-hover: #182030;
-            --border: rgba(255, 255, 255, 0.07);
-            --border-highlight: rgba(99, 102, 241, 0.35);
-            --primary: #6366f1;
-            --primary-glow: rgba(99, 102, 241, 0.25);
-            --accent-gold: #f59e0b;
+            --bg-dark: #05070a;
+            --brand-blue: #38bdf8;
+            --brand-blue-glow: #0284c7;
+            --accent-blue: #60a5fa;
+            --glass-bg: rgba(15, 23, 42, 0.5);
+            --glass-border: rgba(56, 189, 248, 0.15);
+            --glass-hover: rgba(56, 189, 248, 0.35);
             --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-            --radius-main: 20px;
+            --text-muted: #94a3b8;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
 
         body {
-            background-color: var(--bg-body);
+            background-color: var(--bg-dark);
             color: var(--text-main);
             min-height: 100vh;
-            line-height: 1.7;
-            background-image: 
-                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.15), transparent),
-                linear-gradient(to bottom, transparent, #080b11);
-            background-attachment: fixed;
+            overflow-x: hidden;
         }
 
-        /* Header */
+        /* Ambient Blue Glow Effects */
+        .glow-top {
+            position: absolute; top: -150px; right: 30%; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, transparent 70%);
+            pointer-events: none; z-index: 0;
+        }
+
+        /* Header Navigation */
         header {
-            background: rgba(8, 11, 17, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
             position: sticky; top: 0; z-index: 100;
+            background: rgba(5, 7, 10, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
         }
 
-        .navbar {
-            max-width: 1320px; margin: 0 auto; padding: 1.1rem 2rem;
+        .nav-container {
+            max-width: 1280px; margin: 0 auto; padding: 1rem 2rem;
             display: flex; justify-content: space-between; align-items: center;
         }
 
-        .brand-container { display: flex; align-items: center; gap: 14px; text-decoration: none; color: #fff; }
-        
-        /* لوگوی اختصاصی کاربر */
-        .brand-logo-img {
-            height: 42px; width: auto; object-fit: contain;
-            filter: drop-shadow(0 0 12px var(--primary-glow));
-        }
+        .brand-header { display: flex; align-items: center; gap: 16px; text-decoration: none; }
+        .brand-logo-img { height: 48px; width: auto; object-fit: contain; }
+        .brand-text-container { display: flex; flex-direction: column; }
+        .brand-title { font-size: 1.6rem; font-weight: 900; color: #fff; letter-spacing: 1px; line-height: 1; }
+        .brand-subtitle { font-size: 0.72rem; color: var(--brand-blue); margin-top: 4px; font-weight: 500; }
 
-        .brand-text { font-size: 1.2rem; font-weight: 900; letter-spacing: -0.5px; }
-
-        .nav-actions { display: flex; align-items: center; gap: 1.2rem; }
-        .btn-register {
-            background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border);
-            color: #fff; padding: 0.65rem 1.4rem; border-radius: 12px;
+        .btn-add {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--brand-blue); padding: 0.65rem 1.4rem; border-radius: 12px;
             font-size: 0.88rem; font-weight: 700; text-decoration: none;
-            display: flex; align-items: center; gap: 8px;
+            display: inline-flex; align-items: center; gap: 8px;
         }
-        .btn-register:hover { border-color: var(--primary); background: var(--primary-glow); }
+        .btn-add:hover {
+            background: var(--brand-blue); color: #000;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+        }
 
         /* Hero Section */
-        .hero { text-align: center; padding: 5rem 1.5rem 3rem; max-width: 900px; margin: 0 auto; }
+        .hero { position: relative; z-index: 1; text-align: center; padding: 5rem 1.5rem 3.5rem; max-width: 900px; margin: 0 auto; }
         
-        .hero-tag {
+        .hero-logo-large {
+            width: 110px; height: auto; margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.3));
+        }
+
+        .pill-tag {
             display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.25);
-            padding: 6px 18px; border-radius: 30px; font-size: 0.82rem; font-weight: 700; color: #a5b4fc;
-            margin-bottom: 1.8rem;
+            background: rgba(56, 189, 248, 0.08); border: 1px solid var(--glass-border);
+            padding: 6px 18px; border-radius: 99px; font-size: 0.82rem; color: var(--brand-blue);
+            margin-bottom: 1.5rem; backdrop-filter: blur(8px);
         }
 
         .hero h1 {
-            font-size: 3rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 1.2rem;
-            background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: 2.8rem; font-weight: 900; line-height: 1.3; margin-bottom: 1.2rem; color: #fff;
+        }
+        .hero h1 span { color: var(--brand-blue); text-shadow: 0 0 30px rgba(56, 189, 248, 0.3); }
+
+        .hero p { color: var(--text-muted); font-size: 1.1rem; line-height: 2; margin-bottom: 2.5rem; }
+
+        /* Grid Section */
+        .cards-section { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: 0 2rem 6rem; }
+        .grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; }
+
+        .glass-card {
+            background: var(--glass-bg); backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border); border-radius: 20px; padding: 2rem;
+            text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: space-between;
         }
 
-        .hero p { color: var(--text-sub); font-size: 1.15rem; font-weight: 400; margin-bottom: 3rem; line-height: 1.9; }
-
-        /* Status Metrics */
-        .metrics-grid {
-            display: flex; justify-content: center; gap: 3.5rem;
-            border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-            padding: 2rem 0; margin-top: 1rem;
+        .glass-card:hover {
+            transform: translateY(-6px); border-color: var(--glass-hover);
+            box-shadow: 0 15px 35px -10px rgba(2, 132, 199, 0.25);
         }
 
-        .metric-value { font-size: 1.8rem; font-weight: 900; color: #fff; display: block; }
-        .metric-label { font-size: 0.85rem; color: var(--text-sub); margin-top: 4px; }
-
-        /* Ecosystems Container */
-        .main-content { max-width: 1320px; margin: 0 auto; padding: 4rem 2rem 6rem; }
-        .section-head { margin-bottom: 2.5rem; }
-        .section-head h2 { font-size: 1.75rem; font-weight: 900; }
-        .section-head p { color: var(--text-sub); font-size: 0.95rem; margin-top: 6px; }
-
-        .eco-cards-container {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 2rem;
+        .card-icon {
+            width: 54px; height: 54px; border-radius: 14px;
+            background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2);
+            color: var(--brand-blue); display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; margin-bottom: 1.5rem;
         }
 
-        .eco-card {
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: var(--radius-main); padding: 2rem; text-decoration: none; color: inherit;
-            display: flex; flex-direction: column; justify-content: space-between;
-            position: relative; overflow: hidden;
+        .card-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.8rem; color: #fff; }
+        .card-desc { color: var(--text-muted); font-size: 0.92rem; line-height: 1.8; margin-bottom: 2rem; }
+
+        .card-action {
+            display: flex; align-items: center; justify-content: space-between;
+            font-size: 0.88rem; font-weight: 800; color: var(--brand-blue);
+            border-top: 1px solid var(--glass-border); padding-top: 1rem;
         }
 
-        .eco-card:hover {
-            transform: translateY(-6px); border-color: var(--border-highlight);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
-        }
-
-        .eco-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
-        .eco-icon-wrapper {
-            width: 58px; height: 58px; border-radius: 16px;
-            background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2);
-            color: var(--accent-gold); display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
-        }
-
-        .badge-live {
-            background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3);
-            color: #34d399; font-size: 0.75rem; font-weight: 800; padding: 4px 12px; border-radius: 20px;
-        }
-        .badge-soon {
-            background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border);
-            color: var(--text-sub); font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px;
-        }
-
-        .eco-title { font-size: 1.35rem; font-weight: 800; margin-bottom: 0.8rem; color: #fff; }
-        .eco-desc { color: var(--text-sub); font-size: 0.92rem; line-height: 1.7; margin-bottom: 2rem; }
-
-        .eco-footer {
-            border-top: 1px solid var(--border); padding-top: 1.2rem;
-            display: flex; justify-content: space-between; align-items: center;
-            font-size: 0.9rem; font-weight: 800; color: var(--accent-gold);
-        }
-
-        .card-disabled { opacity: 0.55; cursor: default; }
-        .card-disabled:hover { transform: none; border-color: var(--border); box-shadow: none; }
-
-        footer { border-top: 1px solid var(--border); padding: 3rem; text-align: center; color: var(--text-sub); font-size: 0.88rem; }
+        footer { text-align: center; padding: 2.5rem; border-top: 1px solid var(--glass-border); color: var(--text-muted); font-size: 0.85rem; }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.1rem; }
-            .metrics-grid { flex-direction: column; gap: 1.5rem; text-align: center; }
-            .eco-cards-container { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
+            .grid-cards { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
+    <div class="glow-top"></div>
+
     <header>
-        <nav class="navbar">
-            <a href="/" class="brand-container">
-                <!-- تصویر لوگوی اصلی شما (فایل logo.png را در پوشه پروژه قرار دهید) -->
-                <img src="logo.png" alt="لوگوی اطلس" class="brand-logo-img" onerror="this.style.display='none'">
-                <span class="brand-text">اطلس اکوسیستم‌ها</span>
+        <div class="nav-container">
+            <a href="/" class="brand-header">
+                <img src="logo.jpg" alt="لوگوی پل" class="brand-logo-img">
+                <div class="brand-text-container">
+                    <span class="brand-title">پُــل</span>
+                    <span class="brand-subtitle">سامانه جامع داده‌های زیست‌بوم اقتصاد دیجیتال</span>
+                </div>
             </a>
-            <div class="nav-actions">
-                <a href="#" class="btn-register"><i class="fa-solid fa-plus"></i> ثبت کسب‌وکار</a>
-            </div>
-        </nav>
+            <a href="#" class="btn-add"><i class="fa-solid fa-plus"></i> ثبت کسب‌وکار</a>
+        </div>
     </header>
 
     <section class="hero">
-        <div class="hero-tag"><i class="fa-solid fa-compass"></i> رصدخانه اقتصاد دیجیتال ایران</div>
-        <h1>شناسایی و تحلیل تخصصی اکوسیستم‌های نوآوری</h1>
-        <p>دایرکتوری پویا، نقشه‌برداری زنجیره ارزش و تحلیلی جامع بر بازیگران کلیدی صنایع نوظهور و زیرساخت‌های مالی کشور</p>
-
-        <div class="metrics-grid">
-            <div>
-                <span class="metric-value">پایش پویا</span>
-                <span class="metric-label">رصد زنجیره ارزش صنایع</span>
-            </div>
-            <div>
-                <span class="metric-value">+۴۰۰ بازیگر</span>
-                <span class="metric-label">احراز هویت شده</span>
-            </div>
-            <div>
-                <span class="metric-value">توسعه‌پذیر</span>
-                <span class="metric-label">افزایش مستمر اکوسیستم‌ها</span>
-            </div>
-        </div>
+        <img src="logo.jpg" alt="پُــل" class="hero-logo-large">
+        <div class="pill-tag"><i class="fa-solid fa-network-wired"></i> زیرساخت تحلیل داده‌های اکوسیستم</div>
+        <h1>درگاه هوشمند رصد <span>زیست‌بوم اقتصاد دیجیتال</span> ایران</h1>
+        <p>پُــل، زیرساختی برای تحلیل ساختار بازار، رصد زنجیره ارزش و نقشه‌برداری تخصصی از فعالان صنایع پیشران کشور است.</p>
     </section>
 
-    <main class="main-content">
-        <div class="section-head">
-            <h2>اکوسیستم‌های تحت رصد</h2>
-            <p>جهت بررسی نقشه‌ها، ساختار بازار و دایرکتوری شرکت‌ها، صنعت مورد نظر را انتخاب کنید</p>
-        </div>
-
-        <div class="eco-cards-container">
+    <main class="cards-section">
+        <div class="grid-cards">
 
             <!-- اکوسیستم طلا -->
-            <a href="/gold-ecosystem" class="eco-card">
+            <a href="/gold-ecosystem" class="glass-card">
                 <div>
-                    <div class="eco-card-top">
-                        <div class="eco-icon-wrapper"><i class="fa-solid fa-coins"></i></div>
-                        <span class="badge-live">فعال</span>
-                    </div>
-                    <h3 class="eco-title">طلا و فین‌تک طلا</h3>
-                    <p class="eco-desc">پلتفرم‌های معاملاتی آنلاین، صندوق‌های طلای بورس کالا، شمش‌سازی، معادن و نهادهای مالی این حوزه.</p>
+                    <div class="card-icon"><i class="fa-solid fa-coins"></i></div>
+                    <h3 class="card-title">زیست‌بوم طلا و فین‌تک طلا</h3>
+                    <p class="card-desc">دایرکتوری جامع و تحلیل ساختار بازار فعالان معامله آنلاین، صندوق‌های بورس کالا و فین‌تک‌های طلا.</p>
                 </div>
-                <div class="eco-footer">
-                    <span>ورود به دایرکتوری تخصصی</span>
+                <div class="card-action">
+                    <span>ورود به اطلس طلا</span>
                     <i class="fa-solid fa-arrow-left"></i>
                 </div>
             </a>
 
             <!-- هوش مصنوعی -->
-            <div class="eco-card card-disabled">
+            <div class="glass-card" style="opacity: 0.4; cursor: not-allowed;">
                 <div>
-                    <div class="eco-card-top">
-                        <div class="eco-icon-wrapper" style="color:#a855f7; background:rgba(168,85,247,0.1); border-color:rgba(168,85,247,0.2);"><i class="fa-solid fa-brain"></i></div>
-                        <span class="badge-soon">در حال ساخت</span>
-                    </div>
-                    <h3 class="eco-title">هوش مصنوعی و داده</h3>
-                    <p class="eco-desc">مدل‌های بزرگ زبانی (LLM)، پردازش تصویر، خودکارسازی صنعتی و زیرساخت‌های پردازش ابری.</p>
+                    <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
+                    <h3 class="card-title">هوش مصنوعی و داده</h3>
+                    <p class="card-desc">نقشه‌برداری از زیرساخت‌های ابری، مدل‌های زبانی بومی و توسعه‌دهندگان ابزارهای پردازشی.</p>
                 </div>
-                <div class="eco-footer" style="color: var(--text-sub);">
-                    <span>به‌زودی</span>
-                </div>
-            </div>
-
-            <!-- سرمایه‌گذاری خطرپذیر -->
-            <div class="eco-card card-disabled">
-                <div>
-                    <div class="eco-card-top">
-                        <div class="eco-icon-wrapper" style="color:#10b981; background:rgba(16,185,129,0.1); border-color:rgba(16,185,129,0.2);"><i class="fa-solid fa-chart-line"></i></div>
-                        <span class="badge-soon">در حال ساخت</span>
-                    </div>
-                    <h3 class="eco-title">سرمایه‌گذاری خطرپذیر (VC)</h3>
-                    <p class="eco-desc">صندوق‌های VC، شتاب‌دهنده‌ها، سرمایه‌گذاران فرشته و نهادهای تامین مالی جمعی.</p>
-                </div>
-                <div class="eco-footer" style="color: var(--text-sub);">
-                    <span>به‌زودی</span>
+                <div class="card-action" style="color: var(--text-muted);">
+                    <span>در حال آماده‌سازی داده‌ها</span>
                 </div>
             </div>
 
@@ -250,7 +184,7 @@
     </main>
 
     <footer>
-        <p>© ۱۴۰۵ اطلس اکوسیستم‌های اقتصاد دیجیتال | مرجع تحلیلی و رصد صنایع پیشران</p>
+        <p>© ۱۴۰۵ سامانه پُــل | رصد و توسعه زیست‌بوم اقتصاد دیجیتال ایران</p>
     </footer>
 
 </body>
