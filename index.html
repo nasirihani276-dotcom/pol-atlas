@@ -9,134 +9,188 @@
 
     <style>
         :root {
-            --bg-dark: #05070a;
-            --brand-blue: #38bdf8;
-            --brand-blue-glow: #0284c7;
-            --accent-blue: #60a5fa;
-            --glass-bg: rgba(15, 23, 42, 0.5);
-            --glass-border: rgba(56, 189, 248, 0.15);
-            --glass-hover: rgba(56, 189, 248, 0.35);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+            --bg-main: #030712;
+            --brand-blue: #00d2ff;
+            --brand-blue-deep: #0066ff;
+            --card-bg: rgba(15, 23, 42, 0.6);
+            --card-border: rgba(0, 210, 255, 0.15);
+            --text-white: #ffffff;
+            --text-dim: #94a3b8;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
+            background-color: var(--bg-main);
+            color: var(--text-white);
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Ambient Blue Glow Effects */
-        .glow-top {
-            position: absolute; top: -150px; right: 30%; width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, transparent 70%);
-            pointer-events: none; z-index: 0;
+        /* پس‌زمینه زنده و نورانی (Dynamic Glowing Orbs) */
+        .background-glow {
+            position: fixed; inset: 0; pointer-events: none; z-index: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 210, 255, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 80% 60%, rgba(0, 102, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 90%, rgba(139, 92, 246, 0.08) 0%, transparent 45%);
+            filter: blur(60px);
         }
 
-        /* Header Navigation */
+        /* الگوی شبکه هولوگرام پس‌زمینه (Grid Pattern) */
+        .grid-overlay {
+            position: fixed; inset: 0; pointer-events: none; z-index: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+        }
+
+        /* Header */
         header {
             position: sticky; top: 0; z-index: 100;
-            background: rgba(5, 7, 10, 0.85);
+            background: rgba(3, 7, 18, 0.75);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .nav-container {
-            max-width: 1280px; margin: 0 auto; padding: 1rem 2rem;
+            max-width: 1300px; margin: 0 auto; padding: 1rem 2rem;
             display: flex; justify-content: space-between; align-items: center;
         }
 
-        .brand-header { display: flex; align-items: center; gap: 16px; text-decoration: none; }
-        .brand-logo-img { height: 48px; width: auto; object-fit: contain; }
-        .brand-text-container { display: flex; flex-direction: column; }
-        .brand-title { font-size: 1.6rem; font-weight: 900; color: #fff; letter-spacing: 1px; line-height: 1; }
-        .brand-subtitle { font-size: 0.72rem; color: var(--brand-blue); margin-top: 4px; font-weight: 500; }
+        .brand-header { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+        .brand-logo-img { height: 46px; width: auto; filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.5)); }
+        .brand-title { font-size: 1.5rem; font-weight: 900; color: #fff; letter-spacing: 1px; }
+        .brand-subtitle { font-size: 0.72rem; color: var(--brand-blue); font-weight: 600; display: block; }
 
         .btn-add {
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            color: var(--brand-blue); padding: 0.65rem 1.4rem; border-radius: 12px;
+            background: linear-gradient(135deg, rgba(0, 210, 255, 0.2), rgba(0, 102, 255, 0.2));
+            border: 1px solid var(--brand-blue);
+            color: #fff; padding: 0.7rem 1.6rem; border-radius: 99px;
             font-size: 0.88rem; font-weight: 700; text-decoration: none;
             display: inline-flex; align-items: center; gap: 8px;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+            transition: all 0.3s ease;
         }
         .btn-add:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.5);
             background: var(--brand-blue); color: #000;
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
         }
 
         /* Hero Section */
-        .hero { position: relative; z-index: 1; text-align: center; padding: 5rem 1.5rem 3.5rem; max-width: 900px; margin: 0 auto; }
+        .hero { position: relative; z-index: 1; text-align: center; padding: 5rem 1.5rem 3rem; max-width: 950px; margin: 0 auto; }
         
         .hero-logo-large {
-            width: 110px; height: auto; margin-bottom: 1.5rem;
-            filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.3));
+            width: 120px; height: auto; margin-bottom: 1.8rem;
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 25px rgba(0, 210, 255, 0.4));
         }
 
-        .pill-tag {
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .pill-badge {
             display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(56, 189, 248, 0.08); border: 1px solid var(--glass-border);
-            padding: 6px 18px; border-radius: 99px; font-size: 0.82rem; color: var(--brand-blue);
-            margin-bottom: 1.5rem; backdrop-filter: blur(8px);
+            background: rgba(0, 210, 255, 0.08); border: 1px solid var(--card-border);
+            padding: 8px 20px; border-radius: 99px; font-size: 0.85rem; color: var(--brand-blue);
+            margin-bottom: 1.8rem; backdrop-filter: blur(10px);
+            box-shadow: inset 0 0 12px rgba(0, 210, 255, 0.1);
         }
 
         .hero h1 {
-            font-size: 2.8rem; font-weight: 900; line-height: 1.3; margin-bottom: 1.2rem; color: #fff;
+            font-size: 3rem; font-weight: 900; line-height: 1.3; margin-bottom: 1.2rem;
+            background: linear-gradient(180deg, #ffffff 0%, #a5f3fc 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .hero h1 span { color: var(--brand-blue); text-shadow: 0 0 30px rgba(56, 189, 248, 0.3); }
 
-        .hero p { color: var(--text-muted); font-size: 1.1rem; line-height: 2; margin-bottom: 2.5rem; }
+        .hero p { color: var(--text-dim); font-size: 1.15rem; line-height: 2; margin-bottom: 3rem; }
+
+        /* Stats Bar (آمار زنده با ظاهر های‌تک) */
+        .stats-bar {
+            display: flex; justify-content: center; gap: 3rem;
+            margin-bottom: 5rem; position: relative; z-index: 1;
+        }
+        .stat-item { text-align: center; }
+        .stat-num { font-size: 2.2rem; font-weight: 900; color: var(--brand-blue); text-shadow: 0 0 20px rgba(0, 210, 255, 0.3); }
+        .stat-label { font-size: 0.85rem; color: var(--text-dim); margin-top: 4px; }
 
         /* Grid Section */
-        .cards-section { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: 0 2rem 6rem; }
-        .grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; }
+        .cards-section { position: relative; z-index: 1; max-width: 1300px; margin: 0 auto; padding: 0 2rem 6rem; }
+        .section-title { font-size: 1.6rem; font-weight: 800; text-align: center; margin-bottom: 2.5rem; }
 
+        .grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 2rem; }
+
+        /* Spotlight Glass Card Effect */
         .glass-card {
-            background: var(--glass-bg); backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border); border-radius: 20px; padding: 2rem;
-            text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: space-between;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px; padding: 2.2rem;
+            text-decoration: none; color: inherit;
+            display: flex; flex-direction: column; justify-content: space-between;
+            position: relative; overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
+        /* افکت نور تعقیب‌کننده موس روی کارت */
+        .glass-card::before {
+            content: ""; position: absolute;
+            top: var(--mouse-y, 0); left: var(--mouse-x, 0);
+            transform: translate(-50%, -50%);
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(0, 210, 255, 0.15), transparent 70%);
+            opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
+        }
+        .glass-card:hover::before { opacity: 1; }
+
         .glass-card:hover {
-            transform: translateY(-6px); border-color: var(--glass-hover);
-            box-shadow: 0 15px 35px -10px rgba(2, 132, 199, 0.25);
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(0, 210, 255, 0.6);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 210, 255, 0.2);
         }
 
         .card-icon {
-            width: 54px; height: 54px; border-radius: 14px;
-            background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2);
+            width: 60px; height: 60px; border-radius: 18px;
+            background: linear-gradient(135deg, rgba(0, 210, 255, 0.1), rgba(0, 102, 255, 0.1));
+            border: 1px solid rgba(0, 210, 255, 0.3);
             color: var(--brand-blue); display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; margin-bottom: 1.5rem;
+            font-size: 1.6rem; margin-bottom: 1.8rem;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.15);
         }
 
-        .card-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.8rem; color: #fff; }
-        .card-desc { color: var(--text-muted); font-size: 0.92rem; line-height: 1.8; margin-bottom: 2rem; }
+        .card-title { font-size: 1.35rem; font-weight: 800; margin-bottom: 0.8rem; color: #fff; }
+        .card-desc { color: var(--text-dim); font-size: 0.95rem; line-height: 1.8; margin-bottom: 2.2rem; }
 
         .card-action {
             display: flex; align-items: center; justify-content: space-between;
-            font-size: 0.88rem; font-weight: 800; color: var(--brand-blue);
-            border-top: 1px solid var(--glass-border); padding-top: 1rem;
+            font-size: 0.9rem; font-weight: 800; color: var(--brand-blue);
+            border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 1.2rem;
         }
 
-        footer { text-align: center; padding: 2.5rem; border-top: 1px solid var(--glass-border); color: var(--text-muted); font-size: 0.85rem; }
+        footer { text-align: center; padding: 2.5rem; border-top: 1px solid rgba(255, 255, 255, 0.08); color: var(--text-dim); font-size: 0.85rem; }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
+            .hero h1 { font-size: 2.2rem; }
             .grid-cards { grid-template-columns: 1fr; }
+            .stats-bar { flex-direction: column; gap: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="glow-top"></div>
+    <div class="background-glow"></div>
+    <div class="grid-overlay"></div>
 
     <header>
         <div class="nav-container">
             <a href="/" class="brand-header">
                 <img src="logo.jpg" alt="لوگوی پل" class="brand-logo-img">
-                <div class="brand-text-container">
+                <div>
                     <span class="brand-title">پُــل</span>
                     <span class="brand-subtitle">سامانه جامع داده‌های زیست‌بوم اقتصاد دیجیتال</span>
                 </div>
@@ -147,36 +201,67 @@
 
     <section class="hero">
         <img src="logo.jpg" alt="پُــل" class="hero-logo-large">
-        <div class="pill-tag"><i class="fa-solid fa-network-wired"></i> زیرساخت تحلیل داده‌های اکوسیستم</div>
-        <h1>درگاه هوشمند رصد <span>زیست‌بوم اقتصاد دیجیتال</span> ایران</h1>
-        <p>پُــل، زیرساختی برای تحلیل ساختار بازار، رصد زنجیره ارزش و نقشه‌برداری تخصصی از فعالان صنایع پیشران کشور است.</p>
+        <div class="pill-badge"><i class="fa-solid fa-bolt"></i> رصد هوشمند صنایع پیشران</div>
+        <h1>درگاه تحلیلی <span>زیست‌بوم اقتصاد دیجیتال</span> ایران</h1>
+        <p>پُــل زیرساختی مدرن برای تحلیل زنجیره ارزش، رصد بازیگران کلیدی و ترسیم نقشه ساختار بازار در صنایع نوظهور است.</p>
     </section>
 
+    <!-- بخش آمار بصری -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-num">+۴,۰۰۰</div>
+            <div class="stat-label">بازیگر و شرکت فعال</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">۱۲</div>
+            <div class="stat-label">زیست‌بوم تخصصی</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">۱۰۰٪</div>
+            <div class="stat-label">پوشش داده‌های بازار</div>
+        </div>
+    </div>
+
     <main class="cards-section">
+        <h2 class="section-title">زیست‌بوم‌های تحت رصد</h2>
         <div class="grid-cards">
 
-            <!-- اکوسیستم طلا -->
+            <!-- کارت طلا -->
             <a href="/gold-ecosystem" class="glass-card">
                 <div>
                     <div class="card-icon"><i class="fa-solid fa-coins"></i></div>
-                    <h3 class="card-title">زیست‌بوم طلا و فین‌تک طلا</h3>
-                    <p class="card-desc">دایرکتوری جامع و تحلیل ساختار بازار فعالان معامله آنلاین، صندوق‌های بورس کالا و فین‌تک‌های طلا.</p>
+                    <h3 class="card-title">طلا و فین‌تک طلا</h3>
+                    <p class="card-desc">تحلیل کامل بازیگران معامله آنلاین، صندوق‌های بورس کالا، صرافی‌ها و زیرساخت‌های فین‌تک طلا.</p>
                 </div>
                 <div class="card-action">
-                    <span>ورود به اطلس طلا</span>
+                    <span>ورود به اطلس تخصصی</span>
                     <i class="fa-solid fa-arrow-left"></i>
                 </div>
             </a>
 
-            <!-- هوش مصنوعی -->
-            <div class="glass-card" style="opacity: 0.4; cursor: not-allowed;">
+            <!-- کارت هوش مصنوعی -->
+            <div class="glass-card" style="opacity: 0.6;">
                 <div>
-                    <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
+                    <div class="card-icon" style="color: #a855f7; border-color: rgba(168,85,247,0.4);"><i class="fa-solid fa-brain"></i></div>
                     <h3 class="card-title">هوش مصنوعی و داده</h3>
-                    <p class="card-desc">نقشه‌برداری از زیرساخت‌های ابری، مدل‌های زبانی بومی و توسعه‌دهندگان ابزارهای پردازشی.</p>
+                    <p class="card-desc">نقشه‌برداری از زیرساخت‌های ابری، مدل‌های زبانی بزرگ (LLM) و پردازش هوشمند تصویر و متن.</p>
                 </div>
-                <div class="card-action" style="color: var(--text-muted);">
-                    <span>در حال آماده‌سازی داده‌ها</span>
+                <div class="card-action" style="color: var(--text-dim);">
+                    <span>در حال تکمیل داده‌ها</span>
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+            </div>
+
+            <!-- کارت سرمایه‌گذاری -->
+            <div class="glass-card" style="opacity: 0.6;">
+                <div>
+                    <div class="card-icon" style="color: #10b981; border-color: rgba(16,185,129,0.4);"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3 class="card-title">سرمایه‌گذاری خطرپذیر (VC)</h3>
+                    <p class="card-desc">پایش صندوق‌های خطرپذیر، شتاب‌دهنده‌ها، سرمایه‌گذاران فرشته و هولدینگ‌های مالی نوآوری.</p>
+                </div>
+                <div class="card-action" style="color: var(--text-dim);">
+                    <span>در حال تکمیل داده‌ها</span>
+                    <i class="fa-solid fa-clock"></i>
                 </div>
             </div>
 
@@ -184,8 +269,20 @@
     </main>
 
     <footer>
-        <p>© ۱۴۰۵ سامانه پُــل | رصد و توسعه زیست‌بوم اقتصاد دیجیتال ایران</p>
+        <p>© ۱۴۰۵ سامانه پُــل | درگاه هوشمند داده‌های زیست‌بوم اقتصاد دیجیتال ایران</p>
     </footer>
 
+    <!-- اسکریپت افکت نور پویا بر اساس حرکت موس -->
+    <script>
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
 </body>
 </html>
