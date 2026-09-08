@@ -3,236 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اطلس جامع اکوسیستم‌ها و صنایع ایران</title>
+    <title>اطلس جامع اکوسیستم‌ها و صنایع ایران | دایرکتوری تخصصی کسب‌وکارها</title>
+    <meta name="description" content="اطلس جامع اکوسیستم‌های نوآوری و صنعتی ایران؛ دایرکتوری تخصصی و طبقه‌بندی‌شده کسب‌وکارهای فعال در حوزه طلا و فین‌تک، هوش مصنوعی، سرمایه‌گذاری خطرپذیر، رمزارز، صنایع خلاق و بیمه.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://polatlas.ir/">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fa_IR">
+    <meta property="og:site_name" content="اطلس جامع اکوسیستم‌ها و صنایع ایران">
+    <meta property="og:title" content="اطلس جامع اکوسیستم‌ها و صنایع ایران">
+    <meta property="og:description" content="دسترسی طبقه‌بندی‌شده به فعالان، بازیگران کلیدی، ابزارها و بازیگران مالی در صنایع پیشران ایران.">
+    <meta property="og:url" content="https://polatlas.ir/">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="اطلس جامع اکوسیستم‌ها و صنایع ایران">
+    <meta name="twitter:description" content="دایرکتوری تخصصی کسب‌وکارهای صنایع پیشران ایران: طلا و فین‌تک، هوش مصنوعی، رمزارز، VC، صنایع خلاق و بیمه.">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "اطلس جامع اکوسیستم‌ها و صنایع ایران",
+      "url": "https://polatlas.ir/",
+      "inLanguage": "fa-IR",
+      "description": "دایرکتوری و مرجع تحلیلی اکوسیستم‌های نوآوری و صنعتی ایران.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://polatlas.ir/gold-ecosystem?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
     <style>
         :root {
-            --bg-main: #f8fafc;
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --card-border: rgba(226, 232, 240, 0.8);
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --radius-lg: 24px;
-            --radius-md: 16px;
+            --bg-main: #0b0f19;
+            --surface-card: rgba(18, 24, 38, 0.7);
+            --border-card: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-pol: #6366f1;
+            --accent-pol-hover: #4f46e5;
+            --accent-gold: #f59e0b;
+            --accent-ai: #a855f7;
+            --accent-vc: #10b981;
+            --accent-crypto: #06b6d4;
+            --accent-creative: #ec4899;
+            --accent-insurance: #3b82f6;
+            --radius-xl: 28px;
+            --radius-lg: 18px;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
 
         body {
             background-color: var(--bg-main);
-            color: var(--text-main);
+            color: var(--text-primary);
             min-height: 100vh;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+                radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.15) 0%, transparent 45%),
+                radial-gradient(circle at 85% 25%, rgba(245, 158, 11, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+            background-attachment: fixed;
         }
 
-        /* Header */
+        /* Header Navigation */
         header {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-            position: sticky; top: 0; z-index: 100;
+            background: rgba(11, 15, 25, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-card);
+            position: sticky; top: 0; z-index: 1000;
         }
 
         .navbar {
-            max-width: 1280px; margin: 0 auto; padding: 1.1rem 2rem;
+            max-width: 1320px; margin: 0 auto; padding: 1rem 2rem;
             display: flex; justify-content: space-between; align-items: center;
         }
 
-        .brand {
-            display: flex; align-items: center; gap: 12px;
-            text-decoration: none; color: var(--text-main); font-size: 1.35rem; font-weight: 900;
-            letter-spacing: -0.5px;
+        /* لوگوی اختصاصی جدید پل (Pol Logo) */
+        .brand-pol {
+            display: flex; align-items: center; gap: 14px;
+            text-decoration: none; color: #ffffff; font-size: 1.4rem; font-weight: 900;
         }
-        .brand-icon {
-            width: 42px; height: 42px; border-radius: 12px;
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        .pol-logo-container {
+            width: 46px; height: 46px; border-radius: 14px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #d946ef);
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem; color: #fff; box-shadow: 0 8px 20px rgba(79, 70, 229, 0.25);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.4);
+            position: relative;
         }
+        .pol-logo-svg { width: 26px; height: 26px; fill: none; stroke: #ffffff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 
         .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 600; }
-        .nav-links a:hover, .nav-links a.active { color: #4f46e5; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; font-weight: 600; }
+        .nav-links a:hover, .nav-links a.active { color: #ffffff; }
 
-        .btn-add {
-            background: #0f172a; color: #fff;
-            padding: 0.65rem 1.4rem; border-radius: 30px; font-size: 0.88rem;
-            font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px;
-            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
+        .btn-add-biz {
+            background: linear-gradient(135deg, #6366f1, #4f46e5); color: #fff;
+            padding: 0.75rem 1.6rem; border-radius: 30px; font-size: 0.9rem;
+            font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 10px;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
         }
-        .btn-add:hover { background: #1e293b; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(15, 23, 42, 0.25); }
+        .btn-add-biz:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(99, 102, 241, 0.45); }
 
         /* Hero Section */
-        .hero { text-align: center; padding: 4.5rem 1.5rem 2.5rem; max-width: 900px; margin: 0 auto; position: relative; }
+        .hero { text-align: center; padding: 5.5rem 1.5rem 3.5rem; max-width: 960px; margin: 0 auto; position: relative; }
         
         .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(79, 70, 229, 0.08); border: 1px solid rgba(79, 70, 229, 0.2);
-            padding: 6px 18px; border-radius: 20px; font-size: 0.85rem; color: #4f46e5;
-            margin-bottom: 1.5rem; font-weight: 700;
+            display: inline-flex; align-items: center; gap: 10px;
+            background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 8px 22px; border-radius: 30px; font-size: 0.88rem; color: #a5b4fc;
+            margin-bottom: 2rem; font-weight: 700; backdrop-filter: blur(8px);
         }
 
         .hero h1 {
-            font-size: 3rem; font-weight: 900; line-height: 1.3; margin-bottom: 1.2rem;
-            color: #0f172a;
+            font-size: 3.4rem; font-weight: 900; line-height: 1.25; margin-bottom: 1.5rem;
+            background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
         }
 
-        .hero p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 2.5rem; }
+        .hero p { color: var(--text-secondary); font-size: 1.2rem; line-height: 1.85; margin-bottom: 3rem; font-weight: 400; }
 
-        /* Search Bar */
-        .search-wrapper { max-width: 650px; margin: 0 auto; position: relative; }
+        /* Search Box */
+        .search-wrapper { max-width: 680px; margin: 0 auto; position: relative; }
         .search-box {
-            width: 100%; padding: 1.2rem 1.8rem 1.2rem 3.5rem;
-            background: #ffffff; border: 2px solid #e2e8f0;
-            border-radius: 50px; color: var(--text-main); font-size: 1rem; outline: none;
-            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+            width: 100%; padding: 1.35rem 2rem 1.35rem 4rem;
+            background: rgba(18, 24, 38, 0.85); border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50px; color: #fff; font-size: 1.05rem; outline: none;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
-        .search-box:focus { border-color: #6366f1; box-shadow: 0 0 25px rgba(99, 102, 241, 0.18); }
-        .search-icon { position: absolute; left: 1.5rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.2rem; }
+        .search-box:focus { border-color: var(--accent-pol); box-shadow: 0 0 30px rgba(99, 102, 241, 0.3); }
+        .search-icon { position: absolute; left: 1.8rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 1.3rem; }
 
-        /* Stats Bar */
+        /* Stats */
         .stats-bar {
-            display: flex; justify-content: center; gap: 3.5rem; margin-top: 3.5rem;
-            padding-top: 2rem; border-top: 1px solid rgba(226, 232, 240, 0.8);
+            display: flex; justify-content: center; gap: 4rem; margin-top: 4.5rem;
+            padding-top: 2.5rem; border-top: 1px solid var(--border-card);
         }
         .stat-item { text-align: center; }
-        .stat-number { font-size: 1.7rem; font-weight: 900; color: #0f172a; }
-        .stat-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+        .stat-number { font-size: 2.2rem; font-weight: 900; color: #fff; }
+        .stat-label { font-size: 0.9rem; color: var(--text-secondary); margin-top: 6px; }
 
-        /* Container & Grid */
-        .container { max-width: 1280px; margin: 0 auto; padding: 2rem 2rem 6rem; }
-        .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; }
-        .section-title { font-size: 1.6rem; font-weight: 900; color: #0f172a; }
-        .section-subtitle { color: var(--text-muted); font-size: 0.92rem; margin-top: 6px; }
+        /* Ecosystems Grid */
+        .container { max-width: 1320px; margin: 0 auto; padding: 3rem 2rem 7rem; }
+        .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; }
+        .section-title { font-size: 1.8rem; font-weight: 900; color: #fff; }
+        .section-subtitle { color: var(--text-secondary); font-size: 0.98rem; margin-top: 6px; }
 
         .ecosystem-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 2rem;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 2.2rem;
         }
 
-        /* Ecosystem Cards */
         .eco-card {
-            background: var(--card-bg); border: 1px solid var(--card-border);
-            border-radius: var(--radius-lg); padding: 2rem; text-decoration: none; color: inherit;
+            background: var(--surface-card); border: 1px solid var(--border-card);
+            border-radius: var(--radius-xl); padding: 2.2rem; text-decoration: none; color: inherit;
             display: flex; flex-direction: column; justify-content: space-between;
-            position: relative; overflow: hidden; backdrop-filter: blur(12px);
-            min-height: 270px; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.03);
+            position: relative; overflow: hidden; backdrop-filter: blur(16px);
+            min-height: 290px;
         }
 
         .eco-card::before {
-            content: ''; position: absolute; top: 0; right: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at top right, var(--card-accent, rgba(0,0,0,0.02)), transparent 60%);
-            pointer-events: none;
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at top right, var(--card-glow, rgba(255,255,255,0.05)), transparent 60%);
+            opacity: 0; transition: opacity 0.4s ease;
         }
 
         .eco-card:hover {
-            transform: translateY(-8px); border-color: var(--card-hover-border, #cbd5e1);
-            box-shadow: 0 20px 35px var(--card-shadow, rgba(15, 23, 42, 0.08));
+            transform: translateY(-8px); border-color: var(--card-border-glow, rgba(255,255,255,0.3));
+            box-shadow: 0 20px 40px -15px var(--card-shadow, rgba(0,0,0,0.5));
         }
 
-        .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+        .eco-card:hover::before { opacity: 1; }
+
+        .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.8rem; }
         
         .card-icon {
-            width: 62px; height: 62px; border-radius: var(--radius-md);
+            width: 68px; height: 68px; border-radius: var(--radius-lg);
             background: var(--icon-bg); color: var(--icon-color);
-            display: flex; align-items: center; justify-content: center; font-size: 1.7rem;
-            box-shadow: 0 8px 18px var(--icon-shadow, rgba(0,0,0,0.05));
+            display: flex; align-items: center; justify-content: center; font-size: 1.9rem;
+            box-shadow: 0 10px 25px var(--icon-shadow);
         }
 
         .badge-count {
-            background: rgba(15, 23, 42, 0.04); border: 1px solid rgba(15, 23, 42, 0.08);
-            padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 700;
-            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 6px 16px; border-radius: 30px; font-size: 0.82rem; font-weight: 700;
+            color: #ffffff; backdrop-filter: blur(6px);
         }
 
-        .card-body h3 { font-size: 1.3rem; font-weight: 900; margin-bottom: 0.6rem; color: #0f172a; }
-        .card-body p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.65; margin-bottom: 1.5rem; }
+        .card-body h3 { font-size: 1.45rem; font-weight: 800; margin-bottom: 0.8rem; color: #fff; }
+        .card-body p { color: var(--text-secondary); font-size: 0.96rem; line-height: 1.7; margin-bottom: 2rem; }
 
         .card-footer {
             display: flex; align-items: center; justify-content: space-between;
-            border-top: 1px solid rgba(226, 232, 240, 0.8); padding-top: 1rem;
-            font-size: 0.9rem; font-weight: 800; color: var(--icon-color);
+            border-top: 1px solid var(--border-card); padding-top: 1.2rem;
+            font-size: 0.95rem; font-weight: 800; color: var(--icon-color);
         }
 
-        .card-footer i { transition: transform 0.3s; }
-        .eco-card:hover .card-footer i { transform: translateX(-6px); }
+        .card-footer i { transition: transform 0.3s ease; }
+        .eco-card:hover .card-footer i { transform: translateX(-8px); }
 
-        /* Custom Ecosystem Themes */
-        
-        /* ۱. طلا */
+        /* Themes */
         .theme-gold {
-            --card-accent: rgba(217, 119, 6, 0.08);
-            --card-hover-border: rgba(217, 119, 6, 0.4);
-            --card-shadow: rgba(217, 119, 6, 0.12);
-            --icon-bg: #fffbeb;
-            --icon-color: #d97706;
-            --icon-shadow: rgba(217, 119, 6, 0.2);
+            --card-glow: rgba(245, 158, 11, 0.15);
+            --card-border-glow: rgba(245, 158, 11, 0.4);
+            --card-shadow: rgba(245, 158, 11, 0.2);
+            --icon-bg: rgba(245, 158, 11, 0.12);
+            --icon-color: #f59e0b;
+            --icon-shadow: rgba(245, 158, 11, 0.25);
         }
 
-        /* ۲. هوش مصنوعی */
         .theme-ai {
-            --card-accent: rgba(124, 58, 237, 0.08);
-            --card-hover-border: rgba(124, 58, 237, 0.4);
-            --card-shadow: rgba(124, 58, 237, 0.12);
-            --icon-bg: #f5f3ff;
-            --icon-color: #7c3aed;
-            --icon-shadow: rgba(124, 58, 237, 0.2);
+            --card-glow: rgba(168, 85, 247, 0.15);
+            --card-border-glow: rgba(168, 85, 247, 0.4);
+            --card-shadow: rgba(168, 85, 247, 0.2);
+            --icon-bg: rgba(168, 85, 247, 0.12);
+            --icon-color: #a855f7;
+            --icon-shadow: rgba(168, 85, 247, 0.25);
         }
 
-        /* ۳. صنایع خطرپذیر */
         .theme-vc {
-            --card-accent: rgba(5, 150, 105, 0.08);
-            --card-hover-border: rgba(5, 150, 105, 0.4);
-            --card-shadow: rgba(5, 150, 105, 0.12);
-            --icon-bg: #ecfdf5;
-            --icon-color: #059669;
-            --icon-shadow: rgba(5, 150, 105, 0.2);
+            --card-glow: rgba(16, 185, 129, 0.15);
+            --card-border-glow: rgba(16, 185, 129, 0.4);
+            --card-shadow: rgba(16, 185, 129, 0.2);
+            --icon-bg: rgba(16, 185, 129, 0.12);
+            --icon-color: #10b981;
+            --icon-shadow: rgba(16, 185, 129, 0.25);
         }
 
-        /* ۴. رمزارز */
         .theme-crypto {
-            --card-accent: rgba(2, 132, 199, 0.08);
-            --card-hover-border: rgba(2, 132, 199, 0.4);
-            --card-shadow: rgba(2, 132, 199, 0.12);
-            --icon-bg: #f0f9ff;
-            --icon-color: #0284c7;
-            --icon-shadow: rgba(2, 132, 199, 0.2);
+            --card-glow: rgba(6, 182, 212, 0.15);
+            --card-border-glow: rgba(6, 182, 212, 0.4);
+            --card-shadow: rgba(6, 182, 212, 0.2);
+            --icon-bg: rgba(6, 182, 212, 0.12);
+            --icon-color: #06b6d4;
+            --icon-shadow: rgba(6, 182, 212, 0.25);
         }
 
-        /* ۵. صنایع خلاق */
         .theme-creative {
-            --card-accent: rgba(225, 29, 72, 0.08);
-            --card-hover-border: rgba(225, 29, 72, 0.4);
-            --card-shadow: rgba(225, 29, 72, 0.12);
-            --icon-bg: #fff1f2;
-            --icon-color: #e11d48;
-            --icon-shadow: rgba(225, 29, 72, 0.2);
+            --card-glow: rgba(236, 72, 153, 0.15);
+            --card-border-glow: rgba(236, 72, 153, 0.4);
+            --card-shadow: rgba(236, 72, 153, 0.2);
+            --icon-bg: rgba(236, 72, 153, 0.12);
+            --icon-color: #ec4899;
+            --icon-shadow: rgba(236, 72, 153, 0.25);
         }
 
-        /* ۶. بیمه */
         .theme-insurance {
-            --card-accent: rgba(79, 70, 229, 0.08);
-            --card-hover-border: rgba(79, 70, 229, 0.4);
-            --card-shadow: rgba(79, 70, 229, 0.12);
-            --icon-bg: #eef2ff;
-            --icon-color: #4f46e5;
-            --icon-shadow: rgba(79, 70, 229, 0.2);
+            --card-glow: rgba(59, 130, 246, 0.15);
+            --card-border-glow: rgba(59, 130, 246, 0.4);
+            --card-shadow: rgba(59, 130, 246, 0.2);
+            --icon-bg: rgba(59, 130, 246, 0.12);
+            --icon-color: #3b82f6;
+            --icon-shadow: rgba(59, 130, 246, 0.25);
         }
+
+        .eco-card-disabled { opacity: 0.6; cursor: not-allowed; }
+        .eco-card-disabled:hover { transform: none; box-shadow: none; border-color: var(--border-card); }
 
         footer {
-            border-top: 1px solid #e2e8f0; padding: 2.5rem;
-            text-align: center; color: var(--text-muted); font-size: 0.88rem;
-            background: #ffffff;
+            border-top: 1px solid var(--border-card); padding: 3rem;
+            text-align: center; color: var(--text-secondary); font-size: 0.9rem;
+            background: rgba(11, 15, 25, 0.95);
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .stats-bar { flex-direction: column; gap: 1.5rem; }
+            .hero h1 { font-size: 2.3rem; }
+            .stats-bar { flex-direction: column; gap: 1.8rem; }
             .ecosystem-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -241,16 +286,25 @@
 
     <header>
         <div class="navbar">
-            <a href="index.html" class="brand">
-                <div class="brand-icon"><i class="fa-solid fa-compass"></i></div>
-                اطلس اکوسیستم‌ها
+            <a href="/" class="brand-pol">
+                <div class="pol-logo-container">
+                    <!-- آیکون سفارشی لوگوی پُـل -->
+                    <svg class="pol-logo-svg" viewBox="0 0 24 24">
+                        <path d="M4 18V12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12V18"></path>
+                        <path d="M4 14H20"></path>
+                        <path d="M8 14V18"></path>
+                        <path d="M12 14V18"></path>
+                        <path d="M16 14V18"></path>
+                    </svg>
+                </div>
+                <span>اطلس پُــل</span>
             </a>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">صفحه اصلی</a></li>
+                <li><a href="/" class="active">صفحه اصلی</a></li>
                 <li><a href="#ecosystems">اکوسیستم‌ها</a></li>
                 <li><a href="#">درباره اطلس</a></li>
             </ul>
-            <a href="#" class="btn-add"><i class="fa-solid fa-plus"></i> ثبت کسب‌وکار</a>
+            <a href="#" class="btn-add-biz"><i class="fa-solid fa-plus"></i> ثبت کسب‌وکار</a>
         </div>
     </header>
 
@@ -291,7 +345,7 @@
         <div class="ecosystem-grid" id="grid">
 
             <!-- ۱. اکوسیستم طلا -->
-            <a href="gold-ecosystem.html" class="eco-card theme-gold">
+            <a href="/gold-ecosystem" class="eco-card theme-gold">
                 <div>
                     <div class="card-top">
                         <div class="card-icon"><i class="fa-solid fa-coins"></i></div>
@@ -309,11 +363,11 @@
             </a>
 
             <!-- ۲. هوش مصنوعی -->
-            <a href="ai-ecosystem.html" class="eco-card theme-ai">
+            <div class="eco-card theme-ai eco-card-disabled">
                 <div>
                     <div class="card-top">
                         <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
-                        <span class="badge-count">۶۵ کسب‌وکار</span>
+                        <span class="badge-count">به‌زودی</span>
                     </div>
                     <div class="card-body">
                         <h3>هوش مصنوعی و داده (AI)</h3>
@@ -321,17 +375,17 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <span>مشاهده اطلس هوش مصنوعی</span>
-                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>در حال آماده‌سازی</span>
+                    <i class="fa-solid fa-clock"></i>
                 </div>
-            </a>
+            </div>
 
             <!-- ۳. صنایع خطرپذیر -->
-            <a href="vc-ecosystem.html" class="eco-card theme-vc">
+            <div class="eco-card theme-vc eco-card-disabled">
                 <div>
                     <div class="card-top">
                         <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
-                        <span class="badge-count">۵۰ کسب‌وکار</span>
+                        <span class="badge-count">به‌زودی</span>
                     </div>
                     <div class="card-body">
                         <h3>صنایع خطرپذیر (Venture Capital)</h3>
@@ -339,17 +393,17 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <span>مشاهده اطلس خطرپذیر</span>
-                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>در حال آماده‌سازی</span>
+                    <i class="fa-solid fa-clock"></i>
                 </div>
-            </a>
+            </div>
 
-            <!-- ۴. رمزارز و بلاکچین -->
-            <a href="crypto-ecosystem.html" class="eco-card theme-crypto">
+            <!-- ۴. رمزارز -->
+            <div class="eco-card theme-crypto eco-card-disabled">
                 <div>
                     <div class="card-top">
                         <div class="card-icon"><i class="fa-solid fa-cube"></i></div>
-                        <span class="badge-count">۴۲ کسب‌وکار</span>
+                        <span class="badge-count">به‌زودی</span>
                     </div>
                     <div class="card-body">
                         <h3>رمزارز و فناوری‌های بلاکچین</h3>
@@ -357,17 +411,17 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <span>مشاهده اطلس رمزارز</span>
-                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>در حال آماده‌سازی</span>
+                    <i class="fa-solid fa-clock"></i>
                 </div>
-            </a>
+            </div>
 
             <!-- ۵. صنایع خلاق -->
-            <a href="creative-ecosystem.html" class="eco-card theme-creative">
+            <div class="eco-card theme-creative eco-card-disabled">
                 <div>
                     <div class="card-top">
                         <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                        <span class="badge-count">۵۵ کسب‌وکار</span>
+                        <span class="badge-count">به‌زودی</span>
                     </div>
                     <div class="card-body">
                         <h3>صنایع خلاق و صنایع فرهنگی</h3>
@@ -375,17 +429,17 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <span>مشاهده اطلس صنایع خلاق</span>
-                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>در حال آماده‌سازی</span>
+                    <i class="fa-solid fa-clock"></i>
                 </div>
-            </a>
+            </div>
 
             <!-- ۶. بیمه -->
-            <a href="insurance-ecosystem.html" class="eco-card theme-insurance">
+            <div class="eco-card theme-insurance eco-card-disabled">
                 <div>
                     <div class="card-top">
                         <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                        <span class="badge-count">۳۸ کسب‌وکار</span>
+                        <span class="badge-count">به‌زودی</span>
                     </div>
                     <div class="card-body">
                         <h3>بیمه و فناوری‌های بیمه‌ای (InsurTech)</h3>
@@ -393,31 +447,25 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <span>مشاهده اطلس بیمه</span>
-                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>در حال آماده‌سازی</span>
+                    <i class="fa-solid fa-clock"></i>
                 </div>
-            </a>
+            </div>
 
         </div>
     </main>
 
     <footer>
-        <p>© ۱۴۰۵ اطلس جامع معرفی صنایع و اکوسیستم‌های پیشران ایران - تمامی حقوق محفوظ است.</p>
+        <p>© ۱۴۰۵ اطلس پُـل - جامع‌ترین مرجع تحلیل صنایع و اکوسیستم‌های پیشران ایران</p>
     </footer>
 
     <script>
-        // جستجوی زنده در کارت‌ها
         document.getElementById('searchInput').addEventListener('input', function(e) {
             const query = e.target.value.toLowerCase().trim();
             const cards = document.querySelectorAll('.eco-card');
-            
             cards.forEach(card => {
                 const text = card.innerText.toLowerCase();
-                if(text.includes(query)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
+                card.style.display = text.includes(query) ? 'flex' : 'none';
             });
         });
     </script>
